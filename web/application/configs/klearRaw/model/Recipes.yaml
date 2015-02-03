@@ -1,0 +1,98 @@
+production: 
+  class: \EuskalErrezetak\Model\Recipes
+  fields: 
+    name: 
+      title: _('Name')
+      type: text
+      required: true
+      default: true
+    ingredients: 
+      title: _('Ingredient')
+      type: textarea
+      required: true
+      source: 
+        control: tinymce
+        template: simple
+    directions: 
+      title: _('Direction')
+      type: textarea
+      required: true
+      source: 
+        control: tinymce
+        template: simple
+    time: 
+      title: _('Time')
+      type: number
+      required: true
+      source: 
+        control: Spinner
+    difficulty: 
+      title: _('Difficulty')
+      type: select
+      required: true
+      source: 
+        data: inline
+        values: 
+          'easy': _('easy')
+          'medium': _('medium')
+          'hard': _('hard')
+    cost: 
+      title: _('Cost')
+      type: number
+      required: true
+      source: 
+        control: Spinner
+    people: 
+      title: _('People')
+      type: number
+      required: true
+      source: 
+        control: Spinner
+    picture: 
+      title: _('Picture')
+      type: file
+      required: true
+      source: 
+        data: fso
+        size_limit: 20M
+        options: 
+          download: 
+            external: true
+            type: command
+            target: PictureDownload_command
+            icon: ui-silk-bullet-disk
+            title: _("Download file")
+            onNull: hide
+          upload: 
+            type: command
+            target: PictureUpload_command
+            title: _("Upload file")
+            class: qq-uploader
+            onNull: show
+          preview: 
+            target: PicturePreview_command
+            type: command
+            class: filePreview
+            external: 1
+            props: 
+              width: 150
+              height: 150
+              crop: false
+            onNull: hide
+          previewList: 
+            target: PicturePreview_command
+            type: command
+            class: filePreview
+            listController: 1
+            external: 1
+            props: 
+              width: 30
+              height: 30
+              crop: false
+            onNull: hide
+testing: 
+  _extends: production
+staging: 
+  _extends: production
+development: 
+  _extends: production

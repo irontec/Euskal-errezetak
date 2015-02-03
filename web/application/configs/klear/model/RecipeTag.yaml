@@ -1,0 +1,9 @@
+production: 
+  class: \EuskalErrezetak\Model\RecipeTag
+  fields: 
+testing: 
+  _extends: production
+staging: 
+  _extends: production
+development: 
+  _extends: production

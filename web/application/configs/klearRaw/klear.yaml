@@ -1,0 +1,50 @@
+production: 
+  main: 
+    log: 
+      writerName: "Null"
+      writerParams: 
+    sitename: MyApp
+    logo: klear/images/klear.png
+    year: 2015
+    lang: eu
+    langs: 
+      eu: 
+        title: Euskara
+        language: eu
+        locale: eu_ES
+    jqueryUI: 
+      theme: redmond
+    cssExtended: 
+    actionHelpers: 
+    auth: 
+      adapter: Klear_Auth_Adapter_Basic
+      title: _("Access denied")
+      description: _("Insert your username")
+    timezone: Europe/Madrid
+  menu: 
+    General: 
+      title: _("Main management")
+      description: _("Main management")
+      submenus: 
+        CategoriesList: 
+          title: ngettext('Category', 'Categories', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Category', 'Categories', 0))
+        KlearUsersList: 
+          title: ngettext('Klear user', 'Klear users', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Klear user', 'Klear users', 0))
+        RecipesList: 
+          title: ngettext('Recipe', 'Recipes', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Recipe', 'Recipes', 0))
+        TagsList: 
+          title: ngettext('Tag', 'Tags', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Tag', 'Tags', 0))
+testing: 
+  _extends: production
+staging: 
+  _extends: production
+development: 
+  _extends: production

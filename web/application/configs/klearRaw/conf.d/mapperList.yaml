@@ -1,0 +1,7 @@
+mappers: 
+  - &Categories {mapper: \EuskalErrezetak\Mapper\Sql\Categories, modelFile: Categories}
+  - &KlearUsers {mapper: \EuskalErrezetak\Mapper\Sql\KlearUsers, modelFile: KlearUsers}
+  - &RecipeCategory {mapper: \EuskalErrezetak\Mapper\Sql\RecipeCategory, modelFile: RecipeCategory}
+  - &RecipeTag {mapper: \EuskalErrezetak\Mapper\Sql\RecipeTag, modelFile: RecipeTag}
+  - &Recipes {mapper: \EuskalErrezetak\Mapper\Sql\Recipes, modelFile: Recipes}
+  - &Tags {mapper: \EuskalErrezetak\Mapper\Sql\Tags, modelFile: Tags}
