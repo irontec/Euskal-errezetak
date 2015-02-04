@@ -7,7 +7,7 @@ production:
       required: true
       default: true
     email: 
-      title: _('Email')
+      title: ngettext('Email', 'Emails', 1)
       type: text
       required: true
     pass: 

@@ -90,7 +90,7 @@ class KlearUsers extends ModelAbstract
         $this->setMultiLangColumnsList(array(
         ));
 
-        $this->setAvailableLangs(array('eu'));
+        $this->setAvailableLangs(array('eu', 'es'));
 
         $this->setParentList(array(
         ));

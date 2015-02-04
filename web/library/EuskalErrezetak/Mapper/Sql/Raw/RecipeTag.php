@@ -46,6 +46,7 @@ class RecipeTag extends MapperAbstract
         }
 
         $result = array(
+            'id' => $model->getId(),
             'recipeId' => $model->getRecipeId(),
             'tagId' => $model->getTagId(),
         );
@@ -204,7 +205,7 @@ class RecipeTag extends MapperAbstract
                 }//end foreach ($deleteSetNull as $fk)
             } //end if
 
-            $where = $dbAdapter->quoteInto($dbAdapter->quoteIdentifier('recipeId') . ' = ?', $model->getRecipeId());
+            $where = $dbAdapter->quoteInto($dbAdapter->quoteIdentifier('id') . ' = ?', $model->getId());
             $result = $dbTable->delete($where);
 
             if ($this->_cache) {
@@ -305,7 +306,7 @@ class RecipeTag extends MapperAbstract
 
         $data = $model->sanitize()->toArray();
 
-        $primaryKey = $model->getRecipeId();
+        $primaryKey = $model->getId();
         $success = true;
 
         if ($useTransaction) {
@@ -328,13 +329,13 @@ class RecipeTag extends MapperAbstract
             $transactionTag = 't_' . rand(1, 999) . str_replace(array('.', ' '), '', microtime());
         }
 
-        unset($data['recipeId']);
+        unset($data['id']);
 
         try {
             if (is_null($primaryKey) || empty($primaryKey)) {
                 $primaryKey = $this->getDbTable()->insert($data);
                 if ($primaryKey) {
-                    $model->setRecipeId($primaryKey);
+                    $model->setId($primaryKey);
                 } else {
                     throw new \Exception("Insert sentence did not return a valid primary key", 9000);
                 }
@@ -373,7 +374,7 @@ class RecipeTag extends MapperAbstract
                      ->update(
                          $data,
                          array(
-                             $this->getDbTable()->getAdapter()->quoteIdentifier('recipeId') . ' = ?' => $primaryKey
+                             $this->getDbTable()->getAdapter()->quoteIdentifier('id') . ' = ?' => $primaryKey
                          )
                      );
             }
@@ -419,9 +420,7 @@ class RecipeTag extends MapperAbstract
         } catch (\Exception $e) {
             $message = 'Exception encountered while attempting to save ' . get_class($this);
             if (!empty($primaryKey)) {
-                $message .= ' id:';
-                $message .= ' recipeId => ' . $primaryKey['recipeId'];
-                $message .= ' tagId => ' . $primaryKey['tagId'];
+                $message .= ' id: ' . $primaryKey;
             } else {
                 $message .= ' with an empty primary key ';
             }
@@ -486,14 +485,17 @@ class RecipeTag extends MapperAbstract
         $entry->stopChangeLog();
 
         if (is_array($data)) {
-            $entry->setRecipeId($data['recipeId'])
+            $entry->setId($data['id'])
+                  ->setRecipeId($data['recipeId'])
                   ->setTagId($data['tagId']);
         } else if ($data instanceof \Zend_Db_Table_Row_Abstract || $data instanceof \stdClass) {
-            $entry->setRecipeId($data->{'recipeId'})
+            $entry->setId($data->{'id'})
+                  ->setRecipeId($data->{'recipeId'})
                   ->setTagId($data->{'tagId'});
 
         } else if ($data instanceof \EuskalErrezetak\Model\Raw\RecipeTag) {
-            $entry->setRecipeId($data->getRecipeId())
+            $entry->setId($data->getId())
+                  ->setRecipeId($data->getRecipeId())
                   ->setTagId($data->getTagId());
 
         }

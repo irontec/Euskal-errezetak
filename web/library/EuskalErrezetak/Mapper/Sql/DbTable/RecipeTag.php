@@ -31,22 +31,33 @@ class RecipeTag extends TableAbstract
     /**
      * $_id - this is the primary key name
      *
-     * @var array
+     * @var int
      */
-    protected $_id = array('recipeId', 'tagId');
+    protected $_id = 'id';
 
     protected $_rowClass = 'EuskalErrezetak\\Model\\RecipeTag';
     protected $_rowMapperClass = 'EuskalErrezetak\\Mapper\\Sql\\RecipeTag';
 
-    protected $_sequence = false; // array
-    
+    protected $_sequence = true; // int
+    protected $_referenceMap = array(
+        'RecipeTagIbfk1' => array(
+            'columns' => 'recipeId',
+            'refTableClass' => 'EuskalErrezetak\\Mapper\\Sql\\DbTable\\Recipes',
+            'refColumns' => 'id'
+        ),
+        'RecipeTagIbfk2' => array(
+            'columns' => 'tagId',
+            'refTableClass' => 'EuskalErrezetak\\Mapper\\Sql\\DbTable\\Tags',
+            'refColumns' => 'id'
+        )
+    );
     
     protected $_metadata = array (
-	  'recipeId' => 
+	  'id' => 
 	  array (
 	    'SCHEMA_NAME' => NULL,
 	    'TABLE_NAME' => 'RecipeTag',
-	    'COLUMN_NAME' => 'recipeId',
+	    'COLUMN_NAME' => 'id',
 	    'COLUMN_POSITION' => 1,
 	    'DATA_TYPE' => 'mediumint',
 	    'DEFAULT' => NULL,
@@ -57,13 +68,13 @@ class RecipeTag extends TableAbstract
 	    'UNSIGNED' => NULL,
 	    'PRIMARY' => true,
 	    'PRIMARY_POSITION' => 1,
-	    'IDENTITY' => false,
+	    'IDENTITY' => true,
 	  ),
-	  'tagId' => 
+	  'recipeId' => 
 	  array (
 	    'SCHEMA_NAME' => NULL,
 	    'TABLE_NAME' => 'RecipeTag',
-	    'COLUMN_NAME' => 'tagId',
+	    'COLUMN_NAME' => 'recipeId',
 	    'COLUMN_POSITION' => 2,
 	    'DATA_TYPE' => 'mediumint',
 	    'DEFAULT' => NULL,
@@ -72,8 +83,25 @@ class RecipeTag extends TableAbstract
 	    'SCALE' => NULL,
 	    'PRECISION' => NULL,
 	    'UNSIGNED' => NULL,
-	    'PRIMARY' => true,
-	    'PRIMARY_POSITION' => 2,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'tagId' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'RecipeTag',
+	    'COLUMN_NAME' => 'tagId',
+	    'COLUMN_POSITION' => 3,
+	    'DATA_TYPE' => 'mediumint',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => NULL,
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
 	    'IDENTITY' => false,
 	  ),
 	);

@@ -46,8 +46,9 @@ class Tags extends MapperAbstract
         }
 
         $result = array(
-            'tagId' => $model->getTagId(),
-            'name' => $model->getName(),
+            'id' => $model->getId(),
+            'name_es' => $model->getNameEs(),
+            'name_eu' => $model->getNameEu(),
         );
 
         return $result;
@@ -204,7 +205,7 @@ class Tags extends MapperAbstract
                 }//end foreach ($deleteSetNull as $fk)
             } //end if
 
-            $where = $dbAdapter->quoteInto($dbAdapter->quoteIdentifier('tagId') . ' = ?', $model->getTagId());
+            $where = $dbAdapter->quoteInto($dbAdapter->quoteIdentifier('id') . ' = ?', $model->getId());
             $result = $dbTable->delete($where);
 
             if ($this->_cache) {
@@ -305,7 +306,7 @@ class Tags extends MapperAbstract
 
         $data = $model->sanitize()->toArray();
 
-        $primaryKey = $model->getTagId();
+        $primaryKey = $model->getId();
         $success = true;
 
         if ($useTransaction) {
@@ -328,13 +329,13 @@ class Tags extends MapperAbstract
             $transactionTag = 't_' . rand(1, 999) . str_replace(array('.', ' '), '', microtime());
         }
 
-        unset($data['tagId']);
+        unset($data['id']);
 
         try {
             if (is_null($primaryKey) || empty($primaryKey)) {
                 $primaryKey = $this->getDbTable()->insert($data);
                 if ($primaryKey) {
-                    $model->setTagId($primaryKey);
+                    $model->setId($primaryKey);
                 } else {
                     throw new \Exception("Insert sentence did not return a valid primary key", 9000);
                 }
@@ -373,7 +374,7 @@ class Tags extends MapperAbstract
                      ->update(
                          $data,
                          array(
-                             $this->getDbTable()->getAdapter()->quoteIdentifier('tagId') . ' = ?' => $primaryKey
+                             $this->getDbTable()->getAdapter()->quoteIdentifier('id') . ' = ?' => $primaryKey
                          )
                      );
             }
@@ -391,6 +392,23 @@ class Tags extends MapperAbstract
                 }
             }
 
+
+            if ($recursive) {
+                if ($model->getRecipeTag(null, null, true) !== null) {
+                    $recipeTag = $model->getRecipeTag();
+
+                    if (!is_array($recipeTag)) {
+
+                        $recipeTag = array($recipeTag);
+                    }
+
+                    foreach ($recipeTag as $value) {
+                        $value->setTagId($primaryKey)
+                              ->saveRecursive(false, $transactionTag);
+                    }
+                }
+
+            }
 
             if ($success === true) {
 
@@ -484,15 +502,18 @@ class Tags extends MapperAbstract
         $entry->stopChangeLog();
 
         if (is_array($data)) {
-            $entry->setTagId($data['tagId'])
-                  ->setName($data['name']);
+            $entry->setId($data['id'])
+                  ->setNameEs($data['name_es'])
+                  ->setNameEu($data['name_eu']);
         } else if ($data instanceof \Zend_Db_Table_Row_Abstract || $data instanceof \stdClass) {
-            $entry->setTagId($data->{'tagId'})
-                  ->setName($data->{'name'});
+            $entry->setId($data->{'id'})
+                  ->setNameEs($data->{'name_es'})
+                  ->setNameEu($data->{'name_eu'});
 
         } else if ($data instanceof \EuskalErrezetak\Model\Raw\Tags) {
-            $entry->setTagId($data->getTagId())
-                  ->setName($data->getName());
+            $entry->setId($data->getId())
+                  ->setNameEs($data->getNameEs())
+                  ->setNameEu($data->getNameEu());
 
         }
 

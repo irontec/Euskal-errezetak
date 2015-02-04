@@ -40,7 +40,9 @@ class Categories extends TableAbstract
 
     protected $_sequence = true; // int
     
-    
+    protected $_dependentTables = array(
+        'EuskalErrezetak\\Mapper\\Sql\\DbTable\\RecipeCategory'
+    );
     protected $_metadata = array (
 	  'id' => 
 	  array (
@@ -65,6 +67,40 @@ class Categories extends TableAbstract
 	    'TABLE_NAME' => 'Categories',
 	    'COLUMN_NAME' => 'name',
 	    'COLUMN_POSITION' => 2,
+	    'DATA_TYPE' => 'varchar',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => '20',
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'name_es' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'Categories',
+	    'COLUMN_NAME' => 'name_es',
+	    'COLUMN_POSITION' => 3,
+	    'DATA_TYPE' => 'varchar',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => '20',
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'name_eu' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'Categories',
+	    'COLUMN_NAME' => 'name_eu',
+	    'COLUMN_POSITION' => 4,
 	    'DATA_TYPE' => 'varchar',
 	    'DEFAULT' => NULL,
 	    'NULLABLE' => false,

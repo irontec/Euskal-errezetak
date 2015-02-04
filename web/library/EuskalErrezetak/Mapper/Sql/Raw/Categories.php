@@ -47,7 +47,8 @@ class Categories extends MapperAbstract
 
         $result = array(
             'id' => $model->getId(),
-            'name' => $model->getName(),
+            'name_es' => $model->getNameEs(),
+            'name_eu' => $model->getNameEu(),
         );
 
         return $result;
@@ -392,6 +393,23 @@ class Categories extends MapperAbstract
             }
 
 
+            if ($recursive) {
+                if ($model->getRecipeCategory(null, null, true) !== null) {
+                    $recipeCategory = $model->getRecipeCategory();
+
+                    if (!is_array($recipeCategory)) {
+
+                        $recipeCategory = array($recipeCategory);
+                    }
+
+                    foreach ($recipeCategory as $value) {
+                        $value->setCategoryId($primaryKey)
+                              ->saveRecursive(false, $transactionTag);
+                    }
+                }
+
+            }
+
             if ($success === true) {
 
                 foreach ($model->getOrphans() as $itemToDelete) {
@@ -485,14 +503,17 @@ class Categories extends MapperAbstract
 
         if (is_array($data)) {
             $entry->setId($data['id'])
-                  ->setName($data['name']);
+                  ->setNameEs($data['name_es'])
+                  ->setNameEu($data['name_eu']);
         } else if ($data instanceof \Zend_Db_Table_Row_Abstract || $data instanceof \stdClass) {
             $entry->setId($data->{'id'})
-                  ->setName($data->{'name'});
+                  ->setNameEs($data->{'name_es'})
+                  ->setNameEu($data->{'name_eu'});
 
         } else if ($data instanceof \EuskalErrezetak\Model\Raw\Categories) {
             $entry->setId($data->getId())
-                  ->setName($data->getName());
+                  ->setNameEs($data->getNameEs())
+                  ->setNameEu($data->getNameEu());
 
         }
 

@@ -20,12 +20,67 @@ production:
           dialogs: 
             recipesDel_dialog: true
           default: recipesEdit_screen
+        blacklist:
+          directions: true
+          ingredients: true
+          picture: true
       options: 
         title: _("Options")
         screens: 
           recipesNew_screen: true
         dialogs: 
           recipesDel_dialog: true
+      preconfiguredFilters:
+        searchByCategory6:
+          title: _("Betiko Errezetak")
+          field: RecipeCategory
+          value: "6"
+          description: _("Utiliza este pre filtrado para buscar recetas de la categoría Betiko Errezetak")
+        searchByCategory9:
+          title: _("Pintxoak")
+          field: RecipeCategory
+          value: "9"
+          description: _("Utiliza este pre filtrado para buscar recetas de la categoría Pintxoak")
+        searchByCategory10:
+          title: _("Edariak")
+          field: RecipeCategory
+          value: "10"
+          description: _("Utiliza este pre filtrado para buscar recetas de la categoría Edariak")
+        searchByCategory11:
+          title: _("Bertoko produktuekin")
+          field: RecipeCategory
+          value: "11"
+          description: _("Utiliza este pre filtrado para buscar recetas de la categoría Bertoko produktuekin")
+        searchByPeople2:
+          title: _("2 pertsonentzako")
+          field: people
+          value: "2"
+          description: _("Utiliza este pre filtrado para buscar recetas para 2 personas")
+        searchByPeople4:
+          title: _("4 pertsonentzako")
+          field: people
+          value: "4"
+          description: _("Utiliza este pre filtrado para buscar recetas para 4 personas")
+        searchByPeople6:
+          title: _("6 pertsonentzako")
+          field: people
+          value: "6"
+          description: _("Utiliza este pre filtrado para buscar recetas para 6 personas")
+        searchByDifficultyEasy:
+          title: _("Easy")
+          field: difficulty
+          value: "easy"
+          description: _("Utiliza este pre filtrado para buscar recetas fáciles")
+        searchByDifficultyMedium:
+          title: _("Medium")
+          field: difficulty
+          value: "medium"
+          description: _("Utiliza este pre filtrado para buscar recetas de dificultad mediana")
+        searchByDifficultyHard:
+          title: _("Easy")
+          field: difficulty
+          value: "hard"
+          description: _("Utiliza este pre filtrado para buscar recetas difíciles")
     recipesNew_screen: &recipesNew_screenLink 
       <<: *Recipes
       controller: new
@@ -34,12 +89,60 @@ production:
       multiInstance: true
       title: _("Add %s", ngettext('Recipe', 'Recipes', 1))
       shortcutOption: N
+      fullWidth: true
+      fixedPositions:
+        group0:
+          fields:
+            picture: 1
+            name: 1
+        group1:
+          label: _('Informazio orokorra') # El título no es obligatorio
+          fields:
+            time: 1
+            difficulty: 1
+            cost: 1
+            people: 1
+        group2:
+          fields:
+            ingredients: 1
+        group3:
+          fields:
+            directions: 1
+        group4:
+          label: _('Kategoria eta etiketak')
+          fields:
+            RecipeCategory: 1
+            RecipeTag: 1
     recipesEdit_screen: &recipesEdit_screenLink 
       <<: *Recipes
       controller: edit
       class: ui-silk-pencil
       label: false
       title: _("Edit %s %2s", ngettext('Recipe', 'Recipes', 1), "[format| (%item%)]")
+      fullWidth: true
+      fixedPositions:
+        group0:
+          fields:
+            picture: 1
+            name: 1
+        group1:
+          label: _('Informazio orokorra') # El título no es obligatorio
+          fields:
+            time: 1
+            difficulty: 1
+            cost: 1
+            people: 1
+        group2:
+          fields:
+            ingredients: 1
+        group3:
+          fields:
+            directions: 1
+        group4:
+          label: _('Kategoria eta etiketak')
+          fields:
+            RecipeCategory: 1
+            RecipeTag: 1
   dialogs: 
     recipesDel_dialog: &recipesDel_dialogLink 
       <<: *Recipes

@@ -40,6 +40,7 @@ class Recipes extends ModelAbstract
     protected $_id;
 
     /**
+     * [ml]
      * Database var type varchar
      *
      * @var string
@@ -47,7 +48,21 @@ class Recipes extends ModelAbstract
     protected $_name;
 
     /**
-     * [html]
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_nameEs;
+
+    /**
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_nameEu;
+
+    /**
+     * [html][ml]
      * Database var type text
      *
      * @var text
@@ -60,7 +75,39 @@ class Recipes extends ModelAbstract
      *
      * @var text
      */
+    protected $_ingredientsEs;
+
+    /**
+     * [html]
+     * Database var type text
+     *
+     * @var text
+     */
+    protected $_ingredientsEu;
+
+    /**
+     * [html][ml]
+     * Database var type text
+     *
+     * @var text
+     */
     protected $_directions;
+
+    /**
+     * [html]
+     * Database var type text
+     *
+     * @var text
+     */
+    protected $_directionsEs;
+
+    /**
+     * [html]
+     * Database var type text
+     *
+     * @var text
+     */
+    protected $_directionsEu;
 
     /**
      * Database var type mediumint
@@ -115,12 +162,34 @@ class Recipes extends ModelAbstract
 
 
 
+    /**
+     * Dependent relation RecipeCategory_ibfk_1
+     * Type: One-to-Many relationship
+     *
+     * @var \EuskalErrezetak\Model\Raw\RecipeCategory[]
+     */
+    protected $_RecipeCategory;
+
+    /**
+     * Dependent relation RecipeTag_ibfk_1
+     * Type: One-to-Many relationship
+     *
+     * @var \EuskalErrezetak\Model\Raw\RecipeTag[]
+     */
+    protected $_RecipeTag;
+
 
     protected $_columnsList = array(
         'id'=>'id',
         'name'=>'name',
+        'name_es'=>'nameEs',
+        'name_eu'=>'nameEu',
         'ingredients'=>'ingredients',
+        'ingredients_es'=>'ingredientsEs',
+        'ingredients_eu'=>'ingredientsEu',
         'directions'=>'directions',
+        'directions_es'=>'directionsEs',
+        'directions_eu'=>'directionsEu',
         'time'=>'time',
         'difficulty'=>'difficulty',
         'cost'=>'cost',
@@ -136,21 +205,37 @@ class Recipes extends ModelAbstract
     public function __construct()
     {
         $this->setColumnsMeta(array(
-            'ingredients'=> array('html'),
-            'directions'=> array('html'),
+            'name'=> array('ml'),
+            'ingredients'=> array('html','ml'),
+            'ingredients_es'=> array('html'),
+            'ingredients_eu'=> array('html'),
+            'directions'=> array('html','ml'),
+            'directions_es'=> array('html'),
+            'directions_eu'=> array('html'),
             'difficulty'=> array('enum:easy|medium|hard'),
             'pictureFileSize'=> array('FSO'),
         ));
 
         $this->setMultiLangColumnsList(array(
+            'name'=>'Name',
+            'ingredients'=>'Ingredients',
+            'directions'=>'Directions',
         ));
 
-        $this->setAvailableLangs(array('eu'));
+        $this->setAvailableLangs(array('eu', 'es'));
 
         $this->setParentList(array(
         ));
 
         $this->setDependentList(array(
+            'RecipeCategoryIbfk1' => array(
+                    'property' => 'RecipeCategory',
+                    'table_name' => 'RecipeCategory',
+                ),
+            'RecipeTagIbfk1' => array(
+                    'property' => 'RecipeTag',
+                    'table_name' => 'RecipeTag',
+                ),
         ));
 
 
@@ -266,22 +351,24 @@ class Recipes extends ModelAbstract
      * @param string $data
      * @return \EuskalErrezetak\Model\Raw\Recipes
      */
-    public function setName($data)
+    public function setName($data, $language = '')
     {
 
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
-        if ($this->_name != $data) {
-            $this->_logChange('name');
-        }
 
-        if (!is_null($data)) {
-            $this->_name = (string) $data;
-        } else {
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "setName". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
             $this->_name = $data;
+            return $this;
         }
+        $this->$methodName($data);
         return $this;
     }
 
@@ -290,9 +377,88 @@ class Recipes extends ModelAbstract
      *
      * @return string
      */
-    public function getName()
+    public function getName($language = '')
     {
+    
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "getName". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
             return $this->_name;
+        }
+
+        return $this->$methodName();
+
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setNameEs($data)
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+        if ($this->_nameEs != $data) {
+            $this->_logChange('nameEs');
+        }
+
+        if (!is_null($data)) {
+            $this->_nameEs = (string) $data;
+        } else {
+            $this->_nameEs = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column name_es
+     *
+     * @return string
+     */
+    public function getNameEs()
+    {
+            return $this->_nameEs;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setNameEu($data)
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+        if ($this->_nameEu != $data) {
+            $this->_logChange('nameEu');
+        }
+
+        if (!is_null($data)) {
+            $this->_nameEu = (string) $data;
+        } else {
+            $this->_nameEu = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column name_eu
+     *
+     * @return string
+     */
+    public function getNameEu()
+    {
+            return $this->_nameEu;
     }
 
     /**
@@ -300,22 +466,24 @@ class Recipes extends ModelAbstract
      * @param text $data
      * @return \EuskalErrezetak\Model\Raw\Recipes
      */
-    public function setIngredients($data)
+    public function setIngredients($data, $language = '')
     {
 
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
-        if ($this->_ingredients != $data) {
-            $this->_logChange('ingredients');
-        }
 
-        if (!is_null($data)) {
-            $this->_ingredients = (string) $data;
-        } else {
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "setIngredients". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
             $this->_ingredients = $data;
+            return $this;
         }
+        $this->$methodName($data);
         return $this;
     }
 
@@ -324,11 +492,20 @@ class Recipes extends ModelAbstract
      *
      * @return text
      */
-    public function getIngredients()
+    public function getIngredients($language = '')
     {
     
-        $pathFixer = new \Iron_Filter_PathFixer;
-        return $pathFixer->fix($this->_ingredients);
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "getIngredients". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
+            return $this->_ingredients;
+        }
+
+        return $this->$methodName();
+
     }
 
     /**
@@ -336,22 +513,96 @@ class Recipes extends ModelAbstract
      * @param text $data
      * @return \EuskalErrezetak\Model\Raw\Recipes
      */
-    public function setDirections($data)
+    public function setIngredientsEs($data)
     {
 
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
-        if ($this->_directions != $data) {
-            $this->_logChange('directions');
+        if ($this->_ingredientsEs != $data) {
+            $this->_logChange('ingredientsEs');
         }
 
         if (!is_null($data)) {
-            $this->_directions = (string) $data;
+            $this->_ingredientsEs = (string) $data;
         } else {
-            $this->_directions = $data;
+            $this->_ingredientsEs = $data;
         }
+        return $this;
+    }
+
+    /**
+     * Gets column ingredients_es
+     *
+     * @return text
+     */
+    public function getIngredientsEs()
+    {
+    
+        $pathFixer = new \Iron_Filter_PathFixer;
+        return $pathFixer->fix($this->_ingredientsEs);
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param text $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setIngredientsEu($data)
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+        if ($this->_ingredientsEu != $data) {
+            $this->_logChange('ingredientsEu');
+        }
+
+        if (!is_null($data)) {
+            $this->_ingredientsEu = (string) $data;
+        } else {
+            $this->_ingredientsEu = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column ingredients_eu
+     *
+     * @return text
+     */
+    public function getIngredientsEu()
+    {
+    
+        $pathFixer = new \Iron_Filter_PathFixer;
+        return $pathFixer->fix($this->_ingredientsEu);
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param text $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setDirections($data, $language = '')
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "setDirections". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
+            $this->_directions = $data;
+            return $this;
+        }
+        $this->$methodName($data);
         return $this;
     }
 
@@ -360,11 +611,92 @@ class Recipes extends ModelAbstract
      *
      * @return text
      */
-    public function getDirections()
+    public function getDirections($language = '')
+    {
+    
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "getDirections". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
+            return $this->_directions;
+        }
+
+        return $this->$methodName();
+
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param text $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setDirectionsEs($data)
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+        if ($this->_directionsEs != $data) {
+            $this->_logChange('directionsEs');
+        }
+
+        if (!is_null($data)) {
+            $this->_directionsEs = (string) $data;
+        } else {
+            $this->_directionsEs = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column directions_es
+     *
+     * @return text
+     */
+    public function getDirectionsEs()
     {
     
         $pathFixer = new \Iron_Filter_PathFixer;
-        return $pathFixer->fix($this->_directions);
+        return $pathFixer->fix($this->_directionsEs);
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param text $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setDirectionsEu($data)
+    {
+
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+        if ($this->_directionsEu != $data) {
+            $this->_logChange('directionsEu');
+        }
+
+        if (!is_null($data)) {
+            $this->_directionsEu = (string) $data;
+        } else {
+            $this->_directionsEu = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column directions_eu
+     *
+     * @return text
+     */
+    public function getDirectionsEu()
+    {
+    
+        $pathFixer = new \Iron_Filter_PathFixer;
+        return $pathFixer->fix($this->_directionsEu);
     }
 
     /**
@@ -596,6 +928,170 @@ class Recipes extends ModelAbstract
             return $this->_pictureBaseName;
     }
 
+
+    /**
+     * Sets dependent relations RecipeCategory_ibfk_1
+     *
+     * @param array $data An array of \EuskalErrezetak\Model\Raw\RecipeCategory
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setRecipeCategory(array $data, $deleteOrphans = false)
+    {
+        if ($deleteOrphans === true) {
+
+            if ($this->_RecipeCategory === null) {
+
+                $this->getRecipeCategory();
+            }
+
+            $oldRelations = $this->_RecipeCategory;
+
+            if (is_array($oldRelations)) {
+
+                $dataPKs = array();
+
+                foreach ($data as $newItem) {
+
+                    if (is_numeric($pk = $newItem->getPrimaryKey())) {
+
+                        $dataPKs[] = $pk;
+                    }
+                }
+
+                foreach ($oldRelations as $oldItem) {
+
+                    if (!in_array($oldItem->getPrimaryKey(), $dataPKs)) {
+
+                        $this->_orphans[] = $oldItem;
+                    }
+                }
+            }
+        }
+
+        $this->_RecipeCategory = array();
+
+        foreach ($data as $object) {
+            $this->addRecipeCategory($object);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets dependent relations RecipeCategory_ibfk_1
+     *
+     * @param \EuskalErrezetak\Model\Raw\RecipeCategory $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function addRecipeCategory(\EuskalErrezetak\Model\Raw\RecipeCategory $data)
+    {
+        $this->_RecipeCategory[] = $data;
+        $this->_setLoaded('RecipeCategoryIbfk1');
+        return $this;
+    }
+
+    /**
+     * Gets dependent RecipeCategory_ibfk_1
+     *
+     * @param string or array $where
+     * @param string or array $orderBy
+     * @param boolean $avoidLoading skip data loading if it is not already
+     * @return array The array of \EuskalErrezetak\Model\Raw\RecipeCategory
+     */
+    public function getRecipeCategory($where = null, $orderBy = null, $avoidLoading = false)
+    {
+        $fkName = 'RecipeCategoryIbfk1';
+
+        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+            $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
+            $this->_RecipeCategory = $related;
+            $this->_setLoaded($fkName);
+        }
+
+        return $this->_RecipeCategory;
+    }
+
+    /**
+     * Sets dependent relations RecipeTag_ibfk_1
+     *
+     * @param array $data An array of \EuskalErrezetak\Model\Raw\RecipeTag
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setRecipeTag(array $data, $deleteOrphans = false)
+    {
+        if ($deleteOrphans === true) {
+
+            if ($this->_RecipeTag === null) {
+
+                $this->getRecipeTag();
+            }
+
+            $oldRelations = $this->_RecipeTag;
+
+            if (is_array($oldRelations)) {
+
+                $dataPKs = array();
+
+                foreach ($data as $newItem) {
+
+                    if (is_numeric($pk = $newItem->getPrimaryKey())) {
+
+                        $dataPKs[] = $pk;
+                    }
+                }
+
+                foreach ($oldRelations as $oldItem) {
+
+                    if (!in_array($oldItem->getPrimaryKey(), $dataPKs)) {
+
+                        $this->_orphans[] = $oldItem;
+                    }
+                }
+            }
+        }
+
+        $this->_RecipeTag = array();
+
+        foreach ($data as $object) {
+            $this->addRecipeTag($object);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Sets dependent relations RecipeTag_ibfk_1
+     *
+     * @param \EuskalErrezetak\Model\Raw\RecipeTag $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function addRecipeTag(\EuskalErrezetak\Model\Raw\RecipeTag $data)
+    {
+        $this->_RecipeTag[] = $data;
+        $this->_setLoaded('RecipeTagIbfk1');
+        return $this;
+    }
+
+    /**
+     * Gets dependent RecipeTag_ibfk_1
+     *
+     * @param string or array $where
+     * @param string or array $orderBy
+     * @param boolean $avoidLoading skip data loading if it is not already
+     * @return array The array of \EuskalErrezetak\Model\Raw\RecipeTag
+     */
+    public function getRecipeTag($where = null, $orderBy = null, $avoidLoading = false)
+    {
+        $fkName = 'RecipeTagIbfk1';
+
+        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+            $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
+            $this->_RecipeTag = $related;
+            $this->_setLoaded($fkName);
+        }
+
+        return $this->_RecipeTag;
+    }
 
     /**
      * Returns the mapper class for this model

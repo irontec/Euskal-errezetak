@@ -2,7 +2,7 @@ production:
   class: \EuskalErrezetak\Model\Categories
   fields: 
     name: 
-      title: _('Name')
+      title: ngettext('Name', 'Names', 1)
       type: text
       required: true
       default: true

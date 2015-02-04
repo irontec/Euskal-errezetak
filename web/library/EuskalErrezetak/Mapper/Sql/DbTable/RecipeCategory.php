@@ -31,22 +31,33 @@ class RecipeCategory extends TableAbstract
     /**
      * $_id - this is the primary key name
      *
-     * @var array
+     * @var int
      */
-    protected $_id = array('recipeId', 'categoryId');
+    protected $_id = 'id';
 
     protected $_rowClass = 'EuskalErrezetak\\Model\\RecipeCategory';
     protected $_rowMapperClass = 'EuskalErrezetak\\Mapper\\Sql\\RecipeCategory';
 
-    protected $_sequence = false; // array
-    
+    protected $_sequence = true; // int
+    protected $_referenceMap = array(
+        'RecipeCategoryIbfk1' => array(
+            'columns' => 'recipeId',
+            'refTableClass' => 'EuskalErrezetak\\Mapper\\Sql\\DbTable\\Recipes',
+            'refColumns' => 'id'
+        ),
+        'RecipeCategoryIbfk2' => array(
+            'columns' => 'categoryId',
+            'refTableClass' => 'EuskalErrezetak\\Mapper\\Sql\\DbTable\\Categories',
+            'refColumns' => 'id'
+        )
+    );
     
     protected $_metadata = array (
-	  'recipeId' => 
+	  'id' => 
 	  array (
 	    'SCHEMA_NAME' => NULL,
 	    'TABLE_NAME' => 'RecipeCategory',
-	    'COLUMN_NAME' => 'recipeId',
+	    'COLUMN_NAME' => 'id',
 	    'COLUMN_POSITION' => 1,
 	    'DATA_TYPE' => 'mediumint',
 	    'DEFAULT' => NULL,
@@ -57,13 +68,13 @@ class RecipeCategory extends TableAbstract
 	    'UNSIGNED' => NULL,
 	    'PRIMARY' => true,
 	    'PRIMARY_POSITION' => 1,
-	    'IDENTITY' => false,
+	    'IDENTITY' => true,
 	  ),
-	  'categoryId' => 
+	  'recipeId' => 
 	  array (
 	    'SCHEMA_NAME' => NULL,
 	    'TABLE_NAME' => 'RecipeCategory',
-	    'COLUMN_NAME' => 'categoryId',
+	    'COLUMN_NAME' => 'recipeId',
 	    'COLUMN_POSITION' => 2,
 	    'DATA_TYPE' => 'mediumint',
 	    'DEFAULT' => NULL,
@@ -72,8 +83,25 @@ class RecipeCategory extends TableAbstract
 	    'SCALE' => NULL,
 	    'PRECISION' => NULL,
 	    'UNSIGNED' => NULL,
-	    'PRIMARY' => true,
-	    'PRIMARY_POSITION' => 2,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'categoryId' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'RecipeCategory',
+	    'COLUMN_NAME' => 'categoryId',
+	    'COLUMN_POSITION' => 3,
+	    'DATA_TYPE' => 'mediumint',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => NULL,
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
 	    'IDENTITY' => false,
 	  ),
 	);

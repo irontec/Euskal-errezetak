@@ -28,6 +28,13 @@ class RecipeCategory extends ModelAbstract
      *
      * @var int
      */
+    protected $_id;
+
+    /**
+     * Database var type mediumint
+     *
+     * @var int
+     */
     protected $_recipeId;
 
     /**
@@ -38,9 +45,24 @@ class RecipeCategory extends ModelAbstract
     protected $_categoryId;
 
 
+    /**
+     * Parent relation RecipeCategory_ibfk_1
+     *
+     * @var \EuskalErrezetak\Model\Raw\Recipes
+     */
+    protected $_Recipe;
+
+    /**
+     * Parent relation RecipeCategory_ibfk_2
+     *
+     * @var \EuskalErrezetak\Model\Raw\Categories
+     */
+    protected $_Category;
+
 
 
     protected $_columnsList = array(
+        'id'=>'id',
         'recipeId'=>'recipeId',
         'categoryId'=>'categoryId',
     );
@@ -56,9 +78,17 @@ class RecipeCategory extends ModelAbstract
         $this->setMultiLangColumnsList(array(
         ));
 
-        $this->setAvailableLangs(array('eu'));
+        $this->setAvailableLangs(array('eu', 'es'));
 
         $this->setParentList(array(
+            'RecipeCategoryIbfk1'=> array(
+                    'property' => 'Recipe',
+                    'table_name' => 'Recipes',
+                ),
+            'RecipeCategoryIbfk2'=> array(
+                    'property' => 'Category',
+                    'table_name' => 'Categories',
+                ),
         ));
 
         $this->setDependentList(array(
@@ -107,9 +137,43 @@ class RecipeCategory extends ModelAbstract
      * @param int $data
      * @return \EuskalErrezetak\Model\Raw\RecipeCategory
      */
+    public function setId($data)
+    {
+
+        if ($this->_id != $data) {
+            $this->_logChange('id');
+        }
+
+        if (!is_null($data)) {
+            $this->_id = (int) $data;
+        } else {
+            $this->_id = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+            return $this->_id;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param int $data
+     * @return \EuskalErrezetak\Model\Raw\RecipeCategory
+     */
     public function setRecipeId($data)
     {
 
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
         if ($this->_recipeId != $data) {
             $this->_logChange('recipeId');
         }
@@ -140,6 +204,10 @@ class RecipeCategory extends ModelAbstract
     public function setCategoryId($data)
     {
 
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
         if ($this->_categoryId != $data) {
             $this->_logChange('categoryId');
         }
@@ -162,6 +230,88 @@ class RecipeCategory extends ModelAbstract
             return $this->_categoryId;
     }
 
+
+    /**
+     * Sets parent relation Recipe
+     *
+     * @param \EuskalErrezetak\Model\Raw\Recipes $data
+     * @return \EuskalErrezetak\Model\Raw\RecipeCategory
+     */
+    public function setRecipe(\EuskalErrezetak\Model\Raw\Recipes $data)
+    {
+        $this->_Recipe = $data;
+
+        $primaryKey = $data->getPrimaryKey();
+        if (is_array($primaryKey)) {
+            $primaryKey = $primaryKey['id'];
+        }
+
+        if (!is_null($primaryKey)) {
+            $this->setRecipeId($primaryKey);
+        }
+
+        $this->_setLoaded('RecipeCategoryIbfk1');
+        return $this;
+    }
+
+    /**
+     * Gets parent Recipe
+     * TODO: Mejorar esto para los casos en que la relación no exista. Ahora mismo siempre se pediría el padre
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function getRecipe($where = null, $orderBy = null, $avoidLoading = false)
+    {
+        $fkName = 'RecipeCategoryIbfk1';
+
+        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+            $related = $this->getMapper()->loadRelated('parent', $fkName, $this, $where, $orderBy);
+            $this->_Recipe = array_shift($related);
+            $this->_setLoaded($fkName);
+        }
+
+        return $this->_Recipe;
+    }
+
+    /**
+     * Sets parent relation Category
+     *
+     * @param \EuskalErrezetak\Model\Raw\Categories $data
+     * @return \EuskalErrezetak\Model\Raw\RecipeCategory
+     */
+    public function setCategory(\EuskalErrezetak\Model\Raw\Categories $data)
+    {
+        $this->_Category = $data;
+
+        $primaryKey = $data->getPrimaryKey();
+        if (is_array($primaryKey)) {
+            $primaryKey = $primaryKey['id'];
+        }
+
+        if (!is_null($primaryKey)) {
+            $this->setCategoryId($primaryKey);
+        }
+
+        $this->_setLoaded('RecipeCategoryIbfk2');
+        return $this;
+    }
+
+    /**
+     * Gets parent Category
+     * TODO: Mejorar esto para los casos en que la relación no exista. Ahora mismo siempre se pediría el padre
+     * @return \EuskalErrezetak\Model\Raw\Categories
+     */
+    public function getCategory($where = null, $orderBy = null, $avoidLoading = false)
+    {
+        $fkName = 'RecipeCategoryIbfk2';
+
+        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+            $related = $this->getMapper()->loadRelated('parent', $fkName, $this, $where, $orderBy);
+            $this->_Category = array_shift($related);
+            $this->_setLoaded($fkName);
+        }
+
+        return $this->_Category;
+    }
 
     /**
      * Returns the mapper class for this model
@@ -220,24 +370,14 @@ class RecipeCategory extends ModelAbstract
      */
     public function deleteRowByPrimaryKey()
     {
-        $primaryKey = array();
-        if (!$this->getRecipeId()) {
-            $this->_logger->log('The value for RecipeId cannot be empty in deleteRowByPrimaryKey for ' . get_class($this), \Zend_Log::ERR);
-            throw new \Exception('Primary Key RecipeId does not contain a value');
-        } else {
-            $primaryKey['recipeId'] = $this->getRecipeId();
+        if ($this->getId() === null) {
+            $this->_logger->log('The value for Id cannot be null in deleteRowByPrimaryKey for ' . get_class($this), \Zend_Log::ERR);
+            throw new \Exception('Primary Key does not contain a value');
         }
 
-        if (!$this->getCategoryId()) {
-            $this->_logger->log('The value for CategoryId cannot be empty in deleteRowByPrimaryKey for ' . get_class($this), \Zend_Log::ERR);
-            throw new \Exception('Primary Key CategoryId does not contain a value');
-        } else {
-            $primaryKey['categoryId'] = $this->getCategoryId();
-        }
-
-        return $this->getMapper()->getDbTable()->delete('recipeId = '
-                    . $this->getMapper()->getDbTable()->getAdapter()->quote($primaryKey['recipeId'])
-                    . ' AND categoryId = '
-                    . $this->getMapper()->getDbTable()->getAdapter()->quote($primaryKey['categoryId']));
+        return $this->getMapper()->getDbTable()->delete(
+            'id = ' .
+             $this->getMapper()->getDbTable()->getAdapter()->quote($this->getId())
+        );
     }
 }

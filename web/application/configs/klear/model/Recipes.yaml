@@ -2,7 +2,7 @@ production:
   class: \EuskalErrezetak\Model\Recipes
   fields: 
     name: 
-      title: _('Name')
+      title: ngettext('Name', 'Names', 1)
       type: text
       required: true
       default: true
@@ -21,7 +21,7 @@ production:
         control: tinymce
         template: simple
     time: 
-      title: _('Time')
+      title: ngettext('Time', 'Times', 1)
       type: number
       required: true
       source: 
@@ -49,7 +49,7 @@ production:
       source: 
         control: Spinner
     picture: 
-      title: _('Picture')
+      title: ngettext('Picture', 'Pictures', 1)
       type: file
       required: true
       source: 
@@ -90,6 +90,26 @@ production:
               height: 30
               crop: false
             onNull: hide
+    RecipeCategory:
+      type: multiselect
+      title: _('Category')
+      source:
+        data: mapper
+        config:
+          relationMapper: \EuskalErrezetak\Mapper\Sql\RecipeCategory
+          relatedMapperName: \EuskalErrezetak\Mapper\Sql\Categories
+          relatedFieldName: name
+          relationProperty: Category
+    RecipeTag:
+      type: multiselect
+      title: _('Tag')
+      source:
+        data: mapper
+        config:
+          relationMapper: \EuskalErrezetak\Mapper\Sql\RecipeTag
+          relatedMapperName: \EuskalErrezetak\Mapper\Sql\Tags
+          relatedFieldName: name
+          relationProperty: Tag
 testing: 
   _extends: production
 staging: 

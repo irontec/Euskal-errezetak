@@ -33,20 +33,22 @@ class Tags extends TableAbstract
      *
      * @var int
      */
-    protected $_id = 'tagId';
+    protected $_id = 'id';
 
     protected $_rowClass = 'EuskalErrezetak\\Model\\Tags';
     protected $_rowMapperClass = 'EuskalErrezetak\\Mapper\\Sql\\Tags';
 
     protected $_sequence = true; // int
     
-    
+    protected $_dependentTables = array(
+        'EuskalErrezetak\\Mapper\\Sql\\DbTable\\RecipeTag'
+    );
     protected $_metadata = array (
-	  'tagId' => 
+	  'id' => 
 	  array (
 	    'SCHEMA_NAME' => NULL,
 	    'TABLE_NAME' => 'Tags',
-	    'COLUMN_NAME' => 'tagId',
+	    'COLUMN_NAME' => 'id',
 	    'COLUMN_POSITION' => 1,
 	    'DATA_TYPE' => 'mediumint',
 	    'DEFAULT' => NULL,
@@ -65,6 +67,40 @@ class Tags extends TableAbstract
 	    'TABLE_NAME' => 'Tags',
 	    'COLUMN_NAME' => 'name',
 	    'COLUMN_POSITION' => 2,
+	    'DATA_TYPE' => 'varchar',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => '20',
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'name_es' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'Tags',
+	    'COLUMN_NAME' => 'name_es',
+	    'COLUMN_POSITION' => 3,
+	    'DATA_TYPE' => 'varchar',
+	    'DEFAULT' => NULL,
+	    'NULLABLE' => false,
+	    'LENGTH' => '20',
+	    'SCALE' => NULL,
+	    'PRECISION' => NULL,
+	    'UNSIGNED' => NULL,
+	    'PRIMARY' => false,
+	    'PRIMARY_POSITION' => NULL,
+	    'IDENTITY' => false,
+	  ),
+	  'name_eu' => 
+	  array (
+	    'SCHEMA_NAME' => NULL,
+	    'TABLE_NAME' => 'Tags',
+	    'COLUMN_NAME' => 'name_eu',
+	    'COLUMN_POSITION' => 4,
 	    'DATA_TYPE' => 'varchar',
 	    'DEFAULT' => NULL,
 	    'NULLABLE' => false,

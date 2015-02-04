@@ -2,7 +2,7 @@ production:
   class: \EuskalErrezetak\Model\Recipes
   fields: 
     name: 
-      title: _('Name')
+      title: ngettext('Name', 'Names', 1)
       type: text
       required: true
       default: true
@@ -21,7 +21,7 @@ production:
         control: tinymce
         template: simple
     time: 
-      title: _('Time')
+      title: ngettext('Time', 'Times', 1)
       type: number
       required: true
       source: 
@@ -49,7 +49,7 @@ production:
       source: 
         control: Spinner
     picture: 
-      title: _('Picture')
+      title: ngettext('Picture', 'Pictures', 1)
       type: file
       required: true
       source: 

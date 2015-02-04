@@ -12,6 +12,10 @@ production:
         title: Euskara
         language: eu
         locale: eu_ES
+      es: 
+        title: Español
+        language: es
+        locale: es_ES
     jqueryUI: 
       theme: redmond
     cssExtended: 

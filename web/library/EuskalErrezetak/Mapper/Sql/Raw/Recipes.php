@@ -47,9 +47,12 @@ class Recipes extends MapperAbstract
 
         $result = array(
             'id' => $model->getId(),
-            'name' => $model->getName(),
-            'ingredients' => $model->getIngredients(),
-            'directions' => $model->getDirections(),
+            'name_es' => $model->getNameEs(),
+            'name_eu' => $model->getNameEu(),
+            'ingredients_es' => $model->getIngredientsEs(),
+            'ingredients_eu' => $model->getIngredientsEu(),
+            'directions_es' => $model->getDirectionsEs(),
+            'directions_eu' => $model->getDirectionsEu(),
             'time' => $model->getTime(),
             'difficulty' => $model->getDifficulty(),
             'cost' => $model->getCost(),
@@ -401,6 +404,37 @@ class Recipes extends MapperAbstract
             }
 
 
+            if ($recursive) {
+                if ($model->getRecipeCategory(null, null, true) !== null) {
+                    $recipeCategory = $model->getRecipeCategory();
+
+                    if (!is_array($recipeCategory)) {
+
+                        $recipeCategory = array($recipeCategory);
+                    }
+
+                    foreach ($recipeCategory as $value) {
+                        $value->setRecipeId($primaryKey)
+                              ->saveRecursive(false, $transactionTag);
+                    }
+                }
+
+                if ($model->getRecipeTag(null, null, true) !== null) {
+                    $recipeTag = $model->getRecipeTag();
+
+                    if (!is_array($recipeTag)) {
+
+                        $recipeTag = array($recipeTag);
+                    }
+
+                    foreach ($recipeTag as $value) {
+                        $value->setRecipeId($primaryKey)
+                              ->saveRecursive(false, $transactionTag);
+                    }
+                }
+
+            }
+
             if ($success === true) {
 
                 foreach ($model->getOrphans() as $itemToDelete) {
@@ -494,9 +528,12 @@ class Recipes extends MapperAbstract
 
         if (is_array($data)) {
             $entry->setId($data['id'])
-                  ->setName($data['name'])
-                  ->setIngredients($data['ingredients'])
-                  ->setDirections($data['directions'])
+                  ->setNameEs($data['name_es'])
+                  ->setNameEu($data['name_eu'])
+                  ->setIngredientsEs($data['ingredients_es'])
+                  ->setIngredientsEu($data['ingredients_eu'])
+                  ->setDirectionsEs($data['directions_es'])
+                  ->setDirectionsEu($data['directions_eu'])
                   ->setTime($data['time'])
                   ->setDifficulty($data['difficulty'])
                   ->setCost($data['cost'])
@@ -506,9 +543,12 @@ class Recipes extends MapperAbstract
                   ->setPictureBaseName($data['pictureBaseName']);
         } else if ($data instanceof \Zend_Db_Table_Row_Abstract || $data instanceof \stdClass) {
             $entry->setId($data->{'id'})
-                  ->setName($data->{'name'})
-                  ->setIngredients($data->{'ingredients'})
-                  ->setDirections($data->{'directions'})
+                  ->setNameEs($data->{'name_es'})
+                  ->setNameEu($data->{'name_eu'})
+                  ->setIngredientsEs($data->{'ingredients_es'})
+                  ->setIngredientsEu($data->{'ingredients_eu'})
+                  ->setDirectionsEs($data->{'directions_es'})
+                  ->setDirectionsEu($data->{'directions_eu'})
                   ->setTime($data->{'time'})
                   ->setDifficulty($data->{'difficulty'})
                   ->setCost($data->{'cost'})
@@ -519,9 +559,12 @@ class Recipes extends MapperAbstract
 
         } else if ($data instanceof \EuskalErrezetak\Model\Raw\Recipes) {
             $entry->setId($data->getId())
-                  ->setName($data->getName())
-                  ->setIngredients($data->getIngredients())
-                  ->setDirections($data->getDirections())
+                  ->setNameEs($data->getNameEs())
+                  ->setNameEu($data->getNameEu())
+                  ->setIngredientsEs($data->getIngredientsEs())
+                  ->setIngredientsEu($data->getIngredientsEu())
+                  ->setDirectionsEs($data->getDirectionsEs())
+                  ->setDirectionsEu($data->getDirectionsEu())
                   ->setTime($data->getTime())
                   ->setDifficulty($data->getDifficulty())
                   ->setCost($data->getCost())
