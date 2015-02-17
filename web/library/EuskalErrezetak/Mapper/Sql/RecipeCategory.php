@@ -20,5 +20,20 @@
 namespace EuskalErrezetak\Mapper\Sql;
 class RecipeCategory extends Raw\RecipeCategory
 {
+    public function fetchRecipesIdByCategoryId($categoryId)
+    {
+        $filterByIds = array();
 
+        if (!is_numeric($categoryId)) {
+            return $filterByIds;
+        }
+
+        $records = $this->fetchList("categoryId = " . $categoryId);
+
+        foreach ($records as $record) {
+            $filterByIds[] = $record->getRecipeId();
+        }
+
+        return $filterByIds;
+    }
 }

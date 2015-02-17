@@ -11,13 +11,13 @@
  */
 
 /**
- * [entity]
+ * Data Mapper implementation for EuskalErrezetak\Model\Recipes
  *
  * @package EuskalErrezetak\Model
  * @subpackage Model
  * @author Mikel Eizagirre
  */
- 
+
 namespace EuskalErrezetak\Model;
 class Recipes extends Raw\Recipes
 {
@@ -27,4 +27,5 @@ class Recipes extends Raw\Recipes
     public function init()
     {
     }
+
 }

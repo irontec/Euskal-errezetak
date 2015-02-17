@@ -1,91 +1,95 @@
-production: 
+production:
   class: \EuskalErrezetak\Model\Recipes
-  fields: 
-    name: 
+  fields:
+    name:
       title: ngettext('Name', 'Names', 1)
       type: text
       required: true
       default: true
-    ingredients: 
+    ingredients:
       title: _('Ingredient')
       type: textarea
       required: true
-      source: 
+      source:
         control: tinymce
         template: simple
-    directions: 
+        settings:
+          collapseLanguageBoxes: true
+    directions:
       title: _('Direction')
       type: textarea
       required: true
-      source: 
+      source:
         control: tinymce
         template: simple
-    time: 
+        settings:
+          collapseLanguageBoxes: true
+    time:
       title: ngettext('Time', 'Times', 1)
       type: number
       required: true
-      source: 
+      source:
         control: Spinner
-    difficulty: 
+    difficulty:
       title: _('Difficulty')
       type: select
       required: true
-      source: 
+      source:
         data: inline
-        values: 
+        values:
           'easy': _('easy')
           'medium': _('medium')
           'hard': _('hard')
-    cost: 
+    cost:
       title: _('Cost')
       type: number
       required: true
-      source: 
+      source:
         control: Spinner
-    people: 
+    people:
       title: _('People')
       type: number
       required: true
-      source: 
+      source:
         control: Spinner
-    picture: 
+    picture:
       title: ngettext('Picture', 'Pictures', 1)
       type: file
       required: true
-      source: 
+      source:
         data: fso
         size_limit: 20M
-        options: 
-          download: 
+        options:
+          download:
             external: true
             type: command
             target: PictureDownload_command
             icon: ui-silk-bullet-disk
             title: _("Download file")
             onNull: hide
-          upload: 
+          upload:
             type: command
             target: PictureUpload_command
             title: _("Upload file")
             class: qq-uploader
             onNull: show
-          preview: 
+          preview:
             target: PicturePreview_command
             type: command
             class: filePreview
             external: 1
-            props: 
+            props:
               width: 150
               height: 150
               crop: false
             onNull: hide
-          previewList: 
+          previewList:
             target: PicturePreview_command
             type: command
             class: filePreview
             listController: 1
             external: 1
-            props: 
+            props:
               width: 30
               height: 30
               crop: false
@@ -110,9 +114,13 @@ production:
           relatedMapperName: \EuskalErrezetak\Mapper\Sql\Tags
           relatedFieldName: name
           relationProperty: Tag
-testing: 
+      options:
+        screens:
+          tagsNew_screen: true
+
+testing:
   _extends: production
-staging: 
+staging:
   _extends: production
-development: 
+development:
   _extends: production

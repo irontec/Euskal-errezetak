@@ -25,9 +25,11 @@ production:
       title: _("Access denied")
       description: _("Insert your username")
     timezone: Europe/Madrid
+    defaultCustomConfiguration:
+         optionCollectionPlacement: both
   menu: 
     General: 
-      title: _("Main management")
+      title: _("Datuak kontsultatu/eguneratu")
       description: _("Main management")
       submenus: 
         RecipesList: 
@@ -51,18 +53,18 @@ production:
     #       class: ui-silk-text-list-bullets
     #       description: _("List of %s", ngettext('Category', 'Categories', 0))
     Klear: 
-      title: _("Gestión de usuarios")
-      description: _("Secciones que involucran a la imagen de la empresa")
+      title: _("Ezarpenak")
+      description: _("Ezarpen orokorrak kudeatzeko atala")
       submenus: 
         Dashboard:
           default: true
-          title: Panel de control
+          title: Kontrol-panela
           class: ui-silk-bricks
-          description: Vista general de todas las entidades
+          description: _("Entitate guztien ikuspegi orokorra")
         KlearUsersList: 
-          title: ngettext('Usuario Klear', 'Usuarios Klear', 0)
+          title: _("Klear erabiltzaileak")
           class: ui-silk-user-gray
-          description: _("List of %s", ngettext('Usuario Klear', 'Usuarios Klear', 0))
+          description: _("Klear erabiltzaileen zerrenda")
 testing: 
   _extends: production
 staging: 

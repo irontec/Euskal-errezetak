@@ -1,34 +1,36 @@
 #include conf.d/mapperList.yaml
 #include conf.d/actions.yaml
+#include conf.d/fixedPositions.yaml
 
-production: 
-  main: 
+production:
+  main:
     module: klearMatrix
     defaultScreen: recipesList_screen
-  screens: 
-    recipesList_screen: &recipesList_screenLink 
+  screens:
+    recipesList_screen: &recipesList_screenLink
       controller: list
-      pagination: 
+      pagination:
         items: 25
       <<: *Recipes
       title: _("List of %s %2s", ngettext('Recipe', 'Recipes', 0), "[format| (%parent%)]")
-      fields: 
-        options: 
+      fields:
+        options:
           title: _("Options")
-          screens: 
+          screens:
             recipesEdit_screen: true
-          dialogs: 
+          dialogs:
             recipesDel_dialog: true
           default: recipesEdit_screen
         blacklist:
           directions: true
           ingredients: true
           picture: true
-      options: 
+          RecipeTag: true
+      options:
         title: _("Options")
-        screens: 
+        screens:
           recipesNew_screen: true
-        dialogs: 
+        dialogs:
           recipesDel_dialog: true
       preconfiguredFilters:
         searchByCategory6:
@@ -67,21 +69,23 @@ production:
           value: "6"
           description: _("Utiliza este pre filtrado para buscar recetas para 6 personas")
         searchByDifficultyEasy:
-          title: _("Easy")
+          title: _("Erraza")
           field: difficulty
           value: "easy"
           description: _("Utiliza este pre filtrado para buscar recetas fáciles")
         searchByDifficultyMedium:
-          title: _("Medium")
+          title: _("Ertaina")
           field: difficulty
           value: "medium"
           description: _("Utiliza este pre filtrado para buscar recetas de dificultad mediana")
         searchByDifficultyHard:
-          title: _("Easy")
+          title: _("Zaila")
           field: difficulty
           value: "hard"
           description: _("Utiliza este pre filtrado para buscar recetas difíciles")
-    recipesNew_screen: &recipesNew_screenLink 
+
+    # Button: new recipe
+    recipesNew_screen: &recipesNew_screenLink
       <<: *Recipes
       controller: new
       class: ui-silk-add
@@ -113,7 +117,9 @@ production:
           fields:
             RecipeCategory: 1
             RecipeTag: 1
-    recipesEdit_screen: &recipesEdit_screenLink 
+
+    # Button: edit recipe
+    recipesEdit_screen: &recipesEdit_screenLink
       <<: *Recipes
       controller: edit
       class: ui-silk-pencil
@@ -126,7 +132,7 @@ production:
             picture: 1
             name: 1
         group1:
-          label: _('Informazio orokorra') # El título no es obligatorio
+          label: _('Informazio orokorra')
           fields:
             time: 1
             difficulty: 1
@@ -143,8 +149,19 @@ production:
           fields:
             RecipeCategory: 1
             RecipeTag: 1
-  dialogs: 
-    recipesDel_dialog: &recipesDel_dialogLink 
+
+    # Button: add new tag
+    tagsNew_screen:
+      <<: *Tags
+      controller: new
+      class: ui-silk-add
+      label: true
+      title: _("Etiketa sortu")
+      fixedPositions:
+        <<: *fixedPositionsForTags
+
+  dialogs:
+    recipesDel_dialog: &recipesDel_dialogLink
       <<: *Recipes
       controller: delete
       class: ui-silk-bin
@@ -154,25 +171,25 @@ production:
       message: _("%s successfully deleted.", ngettext('Recipe', 'Recipes', 1))
       multiItem: 1
       labelOnList: 1
-  commands: 
-    PictureDownload_command: 
+  commands:
+    PictureDownload_command:
       <<: *Recipes
       controller: File
       action: force-download
       mainColumn: picture
-    PictureUpload_command: 
+    PictureUpload_command:
       <<: *Recipes
       controller: File
       action: upload
       mainColumn: picture
-    PicturePreview_command: 
+    PicturePreview_command:
       <<: *Recipes
       controller: File
       action: preview
       mainColumn: picture
-testing: 
+testing:
   _extends: production
-staging: 
+staging:
   _extends: production
-development: 
+development:
   _extends: production
