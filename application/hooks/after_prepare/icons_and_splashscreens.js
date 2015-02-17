@@ -20,7 +20,7 @@ var Orchestrator = require('orchestrator');
 
 var BASES = {
   android: 'res',
-  ios: 'EuskalErrezetak/Resources'
+  ios: 'Lol/Resources'
 };
 var RESOURCE_DIR = 'resources';
 
