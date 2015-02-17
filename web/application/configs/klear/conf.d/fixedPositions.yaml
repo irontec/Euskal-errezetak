@@ -1,0 +1,9 @@
+fixedPositions:
+
+  - &fixedPositionsForTags
+    groupFirm:
+      colsPerRow: 100
+      fields:
+        name: 33
+        picture: 33
+        caption: 33
