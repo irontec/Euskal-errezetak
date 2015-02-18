@@ -9,8 +9,11 @@ use EuskalErrezetak\Mapper\Sql as Mappers;
 class Rest_StaticPagesController extends Iron_Controller_Rest_BaseController
 {
 
+    protected $_lang;
+
     public function init()
     {
+        $this->_lang = 'es';
         parent::init();
     }
 
@@ -37,34 +40,49 @@ class Rest_StaticPagesController extends Iron_Controller_Rest_BaseController
     public function indexAction()
     {
 
+        $where = array(
+            'status = ?' => 'published'
+        );
+
         $mapper = new Mappers\StaticPages();
-        $items = $mapper->fetchAllToArray();
+
+        $result = array();
+        $items = $mapper->fetchList($where);
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $result[] = array(
+                    'id' => $item->getId(),
+                    'title' => $item->getTitle($this->_lang),
+                    'description' => $item->getDescription($this->_lang)
+                );
+            }
+        }
 
         $this->status->setCode(200);
 
         $this->view->message = 'Ok';
-        $this->view->total = sizeof($items);
-        $this->view->staticpages = $items;
+        $this->view->total = sizeof($result);
+        $this->view->staticpages = $result;
 
     }
 
     /**
-     * [disabled]ApiDescription(section="StaticPages", description="Table StaticPages")
-     * [disabled]ApiMethod(type="get")
-     * [disabled]ApiRoute(name="/rest/staticpages/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="StaticPages", description="Table StaticPages")
+     * @ApiMethod(type="get")
+     * @ApiRoute(name="/rest/staticpages/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'staticpages': [
      *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'description': '', 
-     *            'description_es': '', 
-     *            'description_eu': '', 
-     *            'status': '', 
+     *            'id': '',
+     *            'title': '',
+     *            'title_es': '',
+     *            'title_eu': '',
+     *            'description': '',
+     *            'description_es': '',
+     *            'description_eu': '',
+     *            'status': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -77,133 +95,33 @@ class Rest_StaticPagesController extends Iron_Controller_Rest_BaseController
 
         if ($primaryKey !== false) {
 
+            $where = array(
+                'status = ?' => 'published',
+                'id = ?' => $primaryKey
+            );
+
             $mapper = new Mappers\StaticPages();
-            $item = $mapper->find($primaryKey);
+            $item = $mapper->fetchOne($where);
 
             $this->view->message = 'Ok';
 
             if (empty($item)) {
                 $this->view->staticpages = array();
+                $this->status->setCode(204);
             } else {
-                $this->view->staticpages = $item->toArray();
+                $result = array(
+                    'id' => $item->getId(),
+                    'title' => $item->getTitle($this->_lang),
+                    'description' => $item->getDescription($this->_lang)
+                );
+                $this->view->staticpages = $result;
+                $this->status->setCode(200);
             }
 
-            $this->status->setCode(200);
 
         } else {
 
             $this->status->setCode(204);
-
-        }
-
-    }
-
-    /**
-     * [disabled]ApiDescription(section="StaticPages", description="Table StaticPages")
-     * [disabled]ApiMethod(type="post")
-     * [disabled]ApiRoute(name="/rest/staticpages/")
-     * [disabled]ApiParams(name="title", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_es", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_eu", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="description", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="description_es", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="description_eu", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="status", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 201 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'staticpages': [
-     *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'description': '', 
-     *            'description_es': '', 
-     *            'description_eu': '', 
-     *            'status': '', 
-     *         },
-     *     ],
-     *     'message': 'OK'
-     * }")
-     */
-    public function postAction()
-    {
-        $this->status->setCode(200);
-    }
-
-    /**
-     * [disabled]ApiDescription(section="StaticPages", description="Table StaticPages")
-     * [disabled]ApiMethod(type="put")
-     * [disabled]ApiRoute(name="/rest/staticpages/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="title", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_es", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_eu", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="description", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="description_es", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="description_eu", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="status", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'staticpages': [
-     *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'description': '', 
-     *            'description_es': '', 
-     *            'description_eu': '', 
-     *            'status': '', 
-     *         },
-     *     ],
-     *     'message': 'Ok'
-     * }")
-     */
-    public function putAction()
-    {
-        $this->status->setCode(200);
-    }
-
-    /**
-     * [disabled]ApiDescription(section="StaticPages", description="Table StaticPages")
-     * [disabled]ApiMethod(type="delete")
-     * [disabled]ApiRoute(name="/rest/staticpages/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'staticpages': '',
-     *     'message': 'Ok'
-     * }")
-     */
-    public function deleteAction()
-    {
-
-        $primaryKey = $this->getRequest()->getParam('id', false);
-
-        if ($primaryKey != false) {
-
-            $mapper = new Mappers\StaticPages();
-            $model = $mapper->find($primaryKey);
-
-            if (empty($model)) {
-
-                $this->status->setCode(400);
-                $this->view->message = 'id not exist';
-
-            } else {
-
-                $model->delete();
-
-                $this->status->setCode(200);
-                $this->view->message = 'Ok';
-
-            }
-
-        } else {
-
-            $this->status->setCode(400);
-            $this->view->message = 'id is required';
 
         }
 

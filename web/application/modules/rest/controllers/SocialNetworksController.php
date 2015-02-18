@@ -9,8 +9,11 @@ use EuskalErrezetak\Mapper\Sql as Mappers;
 class Rest_SocialNetworksController extends Iron_Controller_Rest_BaseController
 {
 
+    protected $_lang;
+
     public function init()
     {
+        $this->_lang = 'es';
         parent::init();
     }
 
@@ -37,35 +40,52 @@ class Rest_SocialNetworksController extends Iron_Controller_Rest_BaseController
     public function indexAction()
     {
 
+        $where = array(
+            'status = ?' => 'published'
+        );
+
         $mapper = new Mappers\SocialNetworks();
-        $items = $mapper->fetchAllToArray();
+
+        $result = array();
+        $items = $mapper->fetchList($where);
+
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $result[] = array(
+                    'id' => $item->getId(),
+                    'title' => $item->getTitle($this->_lang),
+                    'url' => $item->getUrl($this->_lang),
+                    'icon' => $item->getIcon($this->_lang),
+                );
+            }
+        }
 
         $this->status->setCode(200);
 
         $this->view->message = 'Ok';
-        $this->view->total = sizeof($items);
-        $this->view->socialnetworks = $items;
+        $this->view->total = sizeof($result);
+        $this->view->socialnetworks = $result;
 
     }
 
     /**
-     * [disabled]ApiDescription(section="SocialNetworks", description="Table SocialNetworks")
-     * [disabled]ApiMethod(type="get")
-     * [disabled]ApiRoute(name="/rest/socialnetworks/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="SocialNetworks", description="Table SocialNetworks")
+     * @ApiMethod(type="get")
+     * @ApiRoute(name="/rest/socialnetworks/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'socialnetworks': [
      *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'url': '', 
-     *            'url_es': '', 
-     *            'url_eu': '', 
-     *            'status': '', 
-     *            'icon': '', 
+     *            'id': '',
+     *            'title': '',
+     *            'title_es': '',
+     *            'title_eu': '',
+     *            'url': '',
+     *            'url_es': '',
+     *            'url_eu': '',
+     *            'status': '',
+     *            'icon': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -78,137 +98,33 @@ class Rest_SocialNetworksController extends Iron_Controller_Rest_BaseController
 
         if ($primaryKey !== false) {
 
+            $where = array(
+                'status = ?' => 'published',
+                'id = ?' => $primaryKey
+            );
+
             $mapper = new Mappers\SocialNetworks();
-            $item = $mapper->find($primaryKey);
+            $item = $mapper->fetchOne($where);
 
             $this->view->message = 'Ok';
 
             if (empty($item)) {
                 $this->view->socialnetworks = array();
+                $this->status->setCode(204);
             } else {
-                $this->view->socialnetworks = $item->toArray();
+                $result = array(
+                    'id' => $item->getId(),
+                    'title' => $item->getTitle($this->_lang),
+                    'url' => $item->getUrl($this->_lang),
+                    'icon' => $item->getIcon($this->_lang),
+                );
+                $this->view->socialnetworks = $result;
+                $this->status->setCode(200);
             }
-
-            $this->status->setCode(200);
 
         } else {
 
             $this->status->setCode(204);
-
-        }
-
-    }
-
-    /**
-     * [disabled]ApiDescription(section="SocialNetworks", description="Table SocialNetworks")
-     * [disabled]ApiMethod(type="post")
-     * [disabled]ApiRoute(name="/rest/socialnetworks/")
-     * [disabled]ApiParams(name="title", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_es", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_eu", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="url", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="url_es", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="url_eu", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="status", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="icon", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 201 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'socialnetworks': [
-     *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'url': '', 
-     *            'url_es': '', 
-     *            'url_eu': '', 
-     *            'status': '', 
-     *            'icon': '', 
-     *         },
-     *     ],
-     *     'message': 'OK'
-     * }")
-     */
-    public function postAction()
-    {
-        $this->status->setCode(200);
-    }
-
-    /**
-     * [disabled]ApiDescription(section="SocialNetworks", description="Table SocialNetworks")
-     * [disabled]ApiMethod(type="put")
-     * [disabled]ApiRoute(name="/rest/socialnetworks/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="title", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_es", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="title_eu", nullable=false, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="url", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="url_es", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="url_eu", nullable=true, type="text", sample="", description="")
-     * [disabled]ApiParams(name="status", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiParams(name="icon", nullable=true, type="varchar", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'socialnetworks': [
-     *         {
-     *            'id': '', 
-     *            'title': '', 
-     *            'title_es': '', 
-     *            'title_eu': '', 
-     *            'url': '', 
-     *            'url_es': '', 
-     *            'url_eu': '', 
-     *            'status': '', 
-     *            'icon': '', 
-     *         },
-     *     ],
-     *     'message': 'Ok'
-     * }")
-     */
-    public function putAction()
-    {
-        $this->status->setCode(200);
-    }
-
-    /**
-     * [disabled]ApiDescription(section="SocialNetworks", description="Table SocialNetworks")
-     * [disabled]ApiMethod(type="delete")
-     * [disabled]ApiRoute(name="/rest/socialnetworks/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
-     *     'socialnetworks': '',
-     *     'message': 'Ok'
-     * }")
-     */
-    public function deleteAction()
-    {
-
-        $primaryKey = $this->getRequest()->getParam('id', false);
-
-        if ($primaryKey != false) {
-
-            $mapper = new Mappers\SocialNetworks();
-            $model = $mapper->find($primaryKey);
-
-            if (empty($model)) {
-
-                $this->status->setCode(400);
-                $this->view->message = 'id not exist';
-
-            } else {
-
-                $model->delete();
-
-                $this->status->setCode(200);
-                $this->view->message = 'Ok';
-
-            }
-
-        } else {
-
-            $this->status->setCode(400);
-            $this->view->message = 'id is required';
 
         }
 
