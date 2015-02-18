@@ -4,8 +4,10 @@
     </ion-nav-buttons>
     <ion-content class="has-header">
 	    <ion-list>
-	        <ion-item class="item-icon-right" ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
-	            {{category.name_es}}
+	        <ion-item class="item-icon-right item item-avatar" ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
+	        	<img src="http://test218.irontec.com/EuskalErrezetak/image/categoriesList/{{category.id}}-{{category.imgBaseName}}">
+				<h2>{{category.name_es}}</h2>
+				<p>{{category.name_es}}</p>	            
 	            <i class="icon ion-chevron-right icon-accessory"></i>
 	        </ion-item>
 	    </ion-list>
