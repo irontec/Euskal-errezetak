@@ -42,6 +42,14 @@ production:
           title: ngettext('Recipe', 'Recipes', 0)
           class: ui-silk-text-list-bullets
           description: _("List of %s", ngettext('Recipe', 'Recipes', 0))
+        SocialNetworksList: 
+          title: ngettext('Social network', 'Social networks', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Social network', 'Social networks', 0))
+        StaticPagesList: 
+          title: ngettext('Static page', 'Static pages', 0)
+          class: ui-silk-text-list-bullets
+          description: _("List of %s", ngettext('Static page', 'Static pages', 0))
         TagsList: 
           title: ngettext('Tag', 'Tags', 0)
           class: ui-silk-text-list-bullets

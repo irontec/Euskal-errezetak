@@ -4,4 +4,6 @@ mappers:
   - &RecipeCategory {mapper: \EuskalErrezetak\Mapper\Sql\RecipeCategory, modelFile: RecipeCategory}
   - &RecipeTag {mapper: \EuskalErrezetak\Mapper\Sql\RecipeTag, modelFile: RecipeTag}
   - &Recipes {mapper: \EuskalErrezetak\Mapper\Sql\Recipes, modelFile: Recipes}
+  - &SocialNetworks {mapper: \EuskalErrezetak\Mapper\Sql\SocialNetworks, modelFile: SocialNetworks}
+  - &StaticPages {mapper: \EuskalErrezetak\Mapper\Sql\StaticPages, modelFile: StaticPages}
   - &Tags {mapper: \EuskalErrezetak\Mapper\Sql\Tags, modelFile: Tags}

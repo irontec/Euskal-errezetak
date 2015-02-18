@@ -1,0 +1,33 @@
+production: 
+  class: \EuskalErrezetak\Model\StaticPages
+  fields: 
+    
+    title: 
+      title: _('Titulo')
+      type: text
+      required: true
+      default: true
+      
+    description: 
+      title: _('Contenido')
+      type: textarea
+      source:
+        control: Tinymce
+        settings:
+          collapseLanguageBoxes: true
+      
+    status: 
+      title: _('Estado')
+      type: select
+      source: 
+        data: inline
+        values: 
+          'draft': _('Borrador')
+          'published': _('Publicada')
+          
+staging: 
+  _extends: production
+testing: 
+  _extends: production
+development: 
+  _extends: production

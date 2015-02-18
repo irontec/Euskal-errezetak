@@ -1,0 +1,63 @@
+#include conf.d/mapperList.yaml
+#include conf.d/actions.yaml
+
+production: 
+  main: 
+    module: klearMatrix
+    defaultScreen: socialNetworksList_screen
+  screens: 
+    socialNetworksList_screen: &socialNetworksList_screenLink 
+      controller: list
+      pagination: 
+        items: 25
+      <<: *SocialNetworks
+      title: _("List of %s %2s", ngettext('Social network', 'Social networks', 0), "[format| (%parent%)]")
+      fields: 
+        options: 
+          title: _("Options")
+          screens: 
+            socialNetworksEdit_screen: true
+          dialogs: 
+            socialNetworksDel_dialog: true
+          default: socialNetworksEdit_screen
+      options: 
+        title: _("Options")
+        screens: 
+          socialNetworksNew_screen: true
+        dialogs: 
+          socialNetworksDel_dialog: true
+          
+    socialNetworksNew_screen: &socialNetworksNew_screenLink 
+      <<: *SocialNetworks
+      controller: new
+      class: ui-silk-user-add
+      label: true
+      multiInstance: true
+      title: _("Add %s", ngettext('Social network', 'Social networks', 1))
+      shortcutOption: N
+      
+    socialNetworksEdit_screen: &socialNetworksEdit_screenLink 
+      <<: *SocialNetworks
+      controller: edit
+      class: ui-silk-user-edit
+      label: false
+      title: _("Edit %s %2s", ngettext('Social network', 'Social networks', 1), "[format| (%item%)]")
+      
+  dialogs: 
+    socialNetworksDel_dialog: &socialNetworksDel_dialogLink 
+      <<: *SocialNetworks
+      controller: delete
+      class: ui-silk-bin
+      labelOption: false
+      title: _("Delete %s", ngettext('Social network', 'Social networks', 1))
+      description: _("Do you want to delete this %s?", ngettext('Social network', 'Social networks', 1))
+      message: _("%s successfully deleted.", ngettext('Social network', 'Social networks', 1))
+      multiItem: 1
+      labelOnList: 1
+      
+staging: 
+  _extends: production
+testing: 
+  _extends: production
+development: 
+  _extends: production

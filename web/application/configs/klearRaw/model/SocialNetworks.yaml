@@ -1,0 +1,28 @@
+production: 
+  class: \EuskalErrezetak\Model\SocialNetworks
+  fields: 
+    title: 
+      title: ngettext('Title', 'Titles', 1)
+      type: text
+      required: true
+      default: true
+    url: 
+      title: ngettext('Url', 'Urls', 1)
+      type: textarea
+    status: 
+      title: _('Statu')
+      type: select
+      source: 
+        data: inline
+        values: 
+          'draft': _('draft')
+          'published': _('published')
+    icon: 
+      title: _('Icon')
+      type: text
+staging: 
+  _extends: production
+testing: 
+  _extends: production
+development: 
+  _extends: production
