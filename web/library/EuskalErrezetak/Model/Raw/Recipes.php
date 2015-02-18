@@ -11,7 +11,7 @@
  */
 
 /**
- * [entity]
+ * [entity][rest]
  *
  * @package EuskalErrezetak\Model
  * @subpackage Model

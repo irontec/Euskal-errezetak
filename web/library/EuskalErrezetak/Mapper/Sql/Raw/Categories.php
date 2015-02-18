@@ -49,6 +49,9 @@ class Categories extends MapperAbstract
             'id' => $model->getId(),
             'name_es' => $model->getNameEs(),
             'name_eu' => $model->getNameEu(),
+            'imgFileSize' => $model->getImgFileSize(),
+            'imgMimeType' => $model->getImgMimeType(),
+            'imgBaseName' => $model->getImgBaseName(),
         );
 
         return $result;
@@ -333,7 +336,9 @@ class Categories extends MapperAbstract
 
         try {
             if (is_null($primaryKey) || empty($primaryKey)) {
+
                 $primaryKey = $this->getDbTable()->insert($data);
+
                 if ($primaryKey) {
                     $model->setId($primaryKey);
                 } else {
@@ -379,8 +384,8 @@ class Categories extends MapperAbstract
                      );
             }
 
-            if (is_numeric($primaryKey) && !empty($fileObjects)) {
-
+                        if (is_numeric($primaryKey) && !empty($fileObjects)) {
+            
                 foreach ($fileObjects as $key => $fso) {
 
                     $baseName = $fso->getBaseName();
@@ -504,16 +509,25 @@ class Categories extends MapperAbstract
         if (is_array($data)) {
             $entry->setId($data['id'])
                   ->setNameEs($data['name_es'])
-                  ->setNameEu($data['name_eu']);
+                  ->setNameEu($data['name_eu'])
+                  ->setImgFileSize($data['imgFileSize'])
+                  ->setImgMimeType($data['imgMimeType'])
+                  ->setImgBaseName($data['imgBaseName']);
         } else if ($data instanceof \Zend_Db_Table_Row_Abstract || $data instanceof \stdClass) {
             $entry->setId($data->{'id'})
                   ->setNameEs($data->{'name_es'})
-                  ->setNameEu($data->{'name_eu'});
+                  ->setNameEu($data->{'name_eu'})
+                  ->setImgFileSize($data->{'imgFileSize'})
+                  ->setImgMimeType($data->{'imgMimeType'})
+                  ->setImgBaseName($data->{'imgBaseName'});
 
         } else if ($data instanceof \EuskalErrezetak\Model\Raw\Categories) {
             $entry->setId($data->getId())
                   ->setNameEs($data->getNameEs())
-                  ->setNameEu($data->getNameEu());
+                  ->setNameEu($data->getNameEu())
+                  ->setImgFileSize($data->getImgFileSize())
+                  ->setImgMimeType($data->getImgMimeType())
+                  ->setImgBaseName($data->getImgBaseName());
 
         }
 

@@ -11,7 +11,7 @@
  */
 
 /**
- * [entity]
+ * [entity][rest]
  *
  * @package EuskalErrezetak\Model
  * @subpackage Model
@@ -21,6 +21,10 @@
 namespace EuskalErrezetak\Model\Raw;
 class Categories extends ModelAbstract
 {
+    /*
+     * @var \Iron_Model_Fso
+     */
+    protected $_imgFso;
 
 
     /**
@@ -52,6 +56,28 @@ class Categories extends ModelAbstract
      */
     protected $_nameEu;
 
+    /**
+     * [FSO]
+     * Database var type int
+     *
+     * @var int
+     */
+    protected $_imgFileSize;
+
+    /**
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_imgMimeType;
+
+    /**
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_imgBaseName;
+
 
 
     /**
@@ -68,6 +94,9 @@ class Categories extends ModelAbstract
         'name'=>'name',
         'name_es'=>'nameEs',
         'name_eu'=>'nameEu',
+        'imgFileSize'=>'imgFileSize',
+        'imgMimeType'=>'imgMimeType',
+        'imgBaseName'=>'imgBaseName',
     );
 
     /**
@@ -77,6 +106,7 @@ class Categories extends ModelAbstract
     {
         $this->setColumnsMeta(array(
             'name'=> array('ml'),
+            'imgFileSize'=> array('FSO'),
         ));
 
         $this->setMultiLangColumnsList(array(
@@ -117,6 +147,7 @@ class Categories extends ModelAbstract
 
     protected function _initFileObjects()
     {
+        $this->_imgFso = new \Iron_Model_Fso($this, $this->getImgSpecs());
 
         return $this;
     }
@@ -124,7 +155,46 @@ class Categories extends ModelAbstract
     public function getFileObjects()
     {
 
-        return array();
+        return array('img');
+    }
+
+    public function getImgSpecs()
+    {
+        return array(
+            'basePath' => 'img',
+            'sizeName' => 'imgFileSize',
+            'mimeName' => 'imgMimeType',
+            'baseNameName' => 'imgBaseName',
+        );
+    }
+
+    public function putImg($filePath = '',$baseName = '')
+    {
+        $this->_imgFso->put($filePath);
+
+        if (!empty($baseName)) {
+
+            $this->_imgFso->setBaseName($baseName);
+        }
+    }
+
+    public function fetchImg($autoload = true)
+    {
+        if ($autoload === true && $this->getimgFileSize() > 0) {
+
+            $this->_imgFso->fetch();
+        }
+
+        return $this->_imgFso;
+    }
+
+    public function removeImg()
+    {
+        $this->_imgFso->remove();
+
+        $this->_imgFso = null;
+
+        return true;
     }
 
 
@@ -276,6 +346,96 @@ class Categories extends ModelAbstract
     public function getNameEu()
     {
             return $this->_nameEu;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param int $data
+     * @return \EuskalErrezetak\Model\Raw\Categories
+     */
+    public function setImgFileSize($data)
+    {
+
+        if ($this->_imgFileSize != $data) {
+            $this->_logChange('imgFileSize');
+        }
+
+        if (!is_null($data)) {
+            $this->_imgFileSize = (int) $data;
+        } else {
+            $this->_imgFileSize = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column imgFileSize
+     *
+     * @return int
+     */
+    public function getImgFileSize()
+    {
+            return $this->_imgFileSize;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Categories
+     */
+    public function setImgMimeType($data)
+    {
+
+        if ($this->_imgMimeType != $data) {
+            $this->_logChange('imgMimeType');
+        }
+
+        if (!is_null($data)) {
+            $this->_imgMimeType = (string) $data;
+        } else {
+            $this->_imgMimeType = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column imgMimeType
+     *
+     * @return string
+     */
+    public function getImgMimeType()
+    {
+            return $this->_imgMimeType;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Categories
+     */
+    public function setImgBaseName($data)
+    {
+
+        if ($this->_imgBaseName != $data) {
+            $this->_logChange('imgBaseName');
+        }
+
+        if (!is_null($data)) {
+            $this->_imgBaseName = (string) $data;
+        } else {
+            $this->_imgBaseName = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column imgBaseName
+     *
+     * @return string
+     */
+    public function getImgBaseName()
+    {
+            return $this->_imgBaseName;
     }
 
 

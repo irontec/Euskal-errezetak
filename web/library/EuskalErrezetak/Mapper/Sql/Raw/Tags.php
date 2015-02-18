@@ -333,7 +333,9 @@ class Tags extends MapperAbstract
 
         try {
             if (is_null($primaryKey) || empty($primaryKey)) {
+
                 $primaryKey = $this->getDbTable()->insert($data);
+
                 if ($primaryKey) {
                     $model->setId($primaryKey);
                 } else {
@@ -379,8 +381,8 @@ class Tags extends MapperAbstract
                      );
             }
 
-            if (is_numeric($primaryKey) && !empty($fileObjects)) {
-
+                        if (is_numeric($primaryKey) && !empty($fileObjects)) {
+            
                 foreach ($fileObjects as $key => $fso) {
 
                     $baseName = $fso->getBaseName();
