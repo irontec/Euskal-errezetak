@@ -49,17 +49,17 @@ class Rest_RecipeCategoryController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
-     * [disabled]ApiMethod(type="get")
-     * [disabled]ApiRoute(name="/rest/recipecategory/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
+     * @ApiMethod(type="get")
+     * @ApiRoute(name="/rest/recipecategory/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipecategory': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'categoryId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'categoryId': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -90,18 +90,18 @@ class Rest_RecipeCategoryController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
-     * [disabled]ApiMethod(type="post")
-     * [disabled]ApiRoute(name="/rest/recipecategory/")
-     * [disabled]ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="categoryId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 201 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
+     * @ApiMethod(type="post")
+     * @ApiRoute(name="/rest/recipecategory/")
+     * @ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="categoryId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 201 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipecategory': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'categoryId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'categoryId': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -113,19 +113,19 @@ class Rest_RecipeCategoryController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
-     * [disabled]ApiMethod(type="put")
-     * [disabled]ApiRoute(name="/rest/recipecategory/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="categoryId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
+     * @ApiMethod(type="put")
+     * @ApiRoute(name="/rest/recipecategory/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="categoryId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipecategory': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'categoryId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'categoryId': '',
      *         },
      *     ],
      *     'message': 'Ok'
@@ -137,12 +137,12 @@ class Rest_RecipeCategoryController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
-     * [disabled]ApiMethod(type="delete")
-     * [disabled]ApiRoute(name="/rest/recipecategory/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeCategory", description="Table RecipeCategory")
+     * @ApiMethod(type="delete")
+     * @ApiRoute(name="/rest/recipecategory/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipecategory': '',
      *     'message': 'Ok'
      * }")

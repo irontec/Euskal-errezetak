@@ -17,7 +17,7 @@ production:
         language: es
         locale: es_ES
     jqueryUI: 
-      theme: aristo
+      theme: redmond
     cssExtended: 
     actionHelpers: 
     auth: 
@@ -32,14 +32,14 @@ production:
       title: _("Datuak kontsultatu/eguneratu")
       description: _("Main management")
       submenus: 
-        RecipesList: 
-          title: ngettext('Recipe', 'Recipes', 0)
-          class: ui-silk-book-open
-          description: _("List of %s", ngettext('Recipe', 'Recipes', 0))
         CategoriesList: 
           title: ngettext('Category', 'Categories', 0)
           class: ui-silk-page-white-stack
           description: _("List of %s", ngettext('Category', 'Categories', 0))
+        RecipesList: 
+          title: ngettext('Recipe', 'Recipes', 0)
+          class: ui-silk-book-open
+          description: _("List of %s", ngettext('Recipe', 'Recipes', 0))
         TagsList: 
           title: ngettext('Tag', 'Tags', 0)
           class: ui-silk-tag-blue

@@ -51,9 +51,9 @@ production:
       message: _("%s successfully deleted.", ngettext('Tag', 'Tags', 1))
       multiItem: 1
       labelOnList: 1
-testing: 
-  _extends: production
 staging: 
+  _extends: production
+testing: 
   _extends: production
 development: 
   _extends: production

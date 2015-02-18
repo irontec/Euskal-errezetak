@@ -49,17 +49,17 @@ class Rest_RecipeTagController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeTag", description="Table RecipeTag")
-     * [disabled]ApiMethod(type="get")
-     * [disabled]ApiRoute(name="/rest/recipetag/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeTag", description="Table RecipeTag")
+     * @ApiMethod(type="get")
+     * @ApiRoute(name="/rest/recipetag/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipetag': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'tagId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'tagId': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -72,7 +72,7 @@ class Rest_RecipeTagController extends Iron_Controller_Rest_BaseController
 
         if ($primaryKey !== false) {
 
-			$recipesMapper = new Mappers\Recipes();
+            $recipesMapper = new Mappers\Recipes();
             $items = $recipesMapper->fetchRecipesByTagId($primaryKey);
 
             $this->view->message = 'Ok';
@@ -90,18 +90,18 @@ class Rest_RecipeTagController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeTag", description="Table RecipeTag")
-     * [disabled]ApiMethod(type="post")
-     * [disabled]ApiRoute(name="/rest/recipetag/")
-     * [disabled]ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="tagId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 201 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeTag", description="Table RecipeTag")
+     * @ApiMethod(type="post")
+     * @ApiRoute(name="/rest/recipetag/")
+     * @ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="tagId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 201 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipetag': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'tagId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'tagId': '',
      *         },
      *     ],
      *     'message': 'OK'
@@ -113,19 +113,19 @@ class Rest_RecipeTagController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeTag", description="Table RecipeTag")
-     * [disabled]ApiMethod(type="put")
-     * [disabled]ApiRoute(name="/rest/recipetag/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiParams(name="tagId", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeTag", description="Table RecipeTag")
+     * @ApiMethod(type="put")
+     * @ApiRoute(name="/rest/recipetag/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="recipeId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiParams(name="tagId", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipetag': [
      *         {
-     *            'id': '', 
-     *            'recipeId': '', 
-     *            'tagId': '', 
+     *            'id': '',
+     *            'recipeId': '',
+     *            'tagId': '',
      *         },
      *     ],
      *     'message': 'Ok'
@@ -137,12 +137,12 @@ class Rest_RecipeTagController extends Iron_Controller_Rest_BaseController
     }
 
     /**
-     * [disabled]ApiDescription(section="RecipeTag", description="Table RecipeTag")
-     * [disabled]ApiMethod(type="delete")
-     * [disabled]ApiRoute(name="/rest/recipetag/")
-     * [disabled]ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
-     * [disabled]ApiReturnHeaders(sample="HTTP 200 OK")
-     * [disabled]ApiReturn(type="object", sample="{
+     * @ApiDescription(section="RecipeTag", description="Table RecipeTag")
+     * @ApiMethod(type="delete")
+     * @ApiRoute(name="/rest/recipetag/")
+     * @ApiParams(name="id", nullable=false, type="mediumint", sample="", description="")
+     * @ApiReturnHeaders(sample="HTTP 200 OK")
+     * @ApiReturn(type="object", sample="{
      *     'recipetag': '',
      *     'message': 'Ok'
      * }")

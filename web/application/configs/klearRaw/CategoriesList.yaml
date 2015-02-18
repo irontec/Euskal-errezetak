@@ -51,9 +51,25 @@ production:
       message: _("%s successfully deleted.", ngettext('Category', 'Categories', 1))
       multiItem: 1
       labelOnList: 1
-testing: 
-  _extends: production
+  commands: 
+    ImgDownload_command: 
+      <<: *Categories
+      controller: File
+      action: force-download
+      mainColumn: img
+    ImgUpload_command: 
+      <<: *Categories
+      controller: File
+      action: upload
+      mainColumn: img
+    ImgPreview_command: 
+      <<: *Categories
+      controller: File
+      action: preview
+      mainColumn: img
 staging: 
+  _extends: production
+testing: 
   _extends: production
 development: 
   _extends: production

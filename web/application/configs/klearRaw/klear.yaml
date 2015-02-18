@@ -46,9 +46,9 @@ production:
           title: ngettext('Tag', 'Tags', 0)
           class: ui-silk-text-list-bullets
           description: _("List of %s", ngettext('Tag', 'Tags', 0))
-testing: 
-  _extends: production
 staging: 
+  _extends: production
+testing: 
   _extends: production
 development: 
   _extends: production

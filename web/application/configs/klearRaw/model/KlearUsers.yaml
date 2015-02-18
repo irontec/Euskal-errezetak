@@ -34,9 +34,9 @@ production:
         control: datetime
         settings: 
           disabled: 'false'
-testing: 
-  _extends: production
 staging: 
+  _extends: production
+testing: 
   _extends: production
 development: 
   _extends: production

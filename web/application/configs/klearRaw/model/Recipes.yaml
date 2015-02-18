@@ -90,9 +90,9 @@ production:
               height: 30
               crop: false
             onNull: hide
-testing: 
-  _extends: production
 staging: 
+  _extends: production
+testing: 
   _extends: production
 development: 
   _extends: production
