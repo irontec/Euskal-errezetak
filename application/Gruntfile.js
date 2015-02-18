@@ -69,6 +69,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
         tasks: ['newer:copy:app', 'newer:jshint:all']
       },
+      moduleJs: {
+          files: ['<%= yeoman.app %>/modules/**/*.js'],
+          tasks: ['newer:copy:app', 'newer:jshint:all']
+      },
       compass: {
         files: ['<%= yeoman.app %>/<%= yeoman.styles %>/**/*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer', 'newer:copy:tmp']
