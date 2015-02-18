@@ -1,0 +1,55 @@
+production: 
+  class: \EuskalErrezetak\Model\Categories
+  fields: 
+    name: 
+      title: ngettext('Name', 'Names', 1)
+      type: text
+      required: true
+      default: true
+    img: 
+      title: _('Img')
+      type: file
+      source: 
+        data: fso
+        size_limit: 20M
+        options: 
+          download: 
+            external: true
+            type: command
+            target: ImgDownload_command
+            icon: ui-silk-bullet-disk
+            title: _("Download file")
+            onNull: hide
+          upload: 
+            type: command
+            target: ImgUpload_command
+            title: _("Upload file")
+            class: qq-uploader
+            onNull: show
+          preview: 
+            target: ImgPreview_command
+            type: command
+            class: filePreview
+            external: 1
+            props: 
+              width: 150
+              height: 150
+              crop: false
+            onNull: hide
+          previewList: 
+            target: ImgPreview_command
+            type: command
+            class: filePreview
+            listController: 1
+            external: 1
+            props: 
+              width: 30
+              height: 30
+              crop: false
+            onNull: hide
+staging: 
+  _extends: production
+testing: 
+  _extends: production
+development: 
+  _extends: production
