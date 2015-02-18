@@ -1,0 +1,18 @@
+<ion-view title="{{category.name_es}}">
+
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-content class="has-header">
+        <h1>{{category.name_es}}</h1>
+        
+        <ion-list>
+            <ion-item class="item-icon-right" ng-repeat="recipe in recipes" href="#/app/recipe/{{recipe.id}}">
+                {{recipe.name_es}}
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    
+</ion-view>
