@@ -28,4 +28,24 @@ class Recipes extends Raw\Recipes
     {
     }
 
+    public function getRestArray($lang = 'es')
+    {
+
+        $result = array(
+            'id' => $this->getId(),
+            'name' => $this->getName($lang),
+            'ingredientss' => $this->getIngredients($lang),
+            'directions' => $this->getDirections($lang),
+            'time' => $this->getTime(),
+            'difficulty' => $this->getDifficulty(),
+            'cost' => $this->getCost(),
+            'people' => $this->getPeople(),
+            'pictureFileSize' => $this->getPictureFileSize(),
+            'pictureMimeType' => $this->getPictureMimeType(),
+            'pictureBaseName' => $this->getPictureBaseName(),
+        );
+
+        return $result;
+    }
+
 }
