@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('EuskalErrezetak.controllers').factory('SocialNetworksMapper', function($http, $resource) {
+angular.module('EuskalErrezetak.controllers').factory('SocialNetworksMapper', function($http, $resource, baseUrl) {
     
-    var urlGet = 'http://test218.irontec.com/EuskalErrezetak/rest/social-networks';
+    var urlGet = baseUrl + '/rest/social-networks';
     
     var Categories = $resource(urlGet, null, {
         'update': {

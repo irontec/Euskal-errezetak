@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('EuskalErrezetak.controllers').factory('CategoriesMapper', function($http, $resource) {
+angular.module('EuskalErrezetak.controllers').factory('CategoriesMapper', function($http, $resource, baseUrl) {
     
-    var urlGet = 'http://test218.irontec.com/EuskalErrezetak/rest/categories';
+    var urlGet = baseUrl + '/rest/categories';
     
     var Categories = $resource(urlGet, null, {
         'update': {

@@ -1,15 +1,20 @@
 <ion-view title="Categories">
+
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-content class="has-header">
-	    <ion-list>
-	        <ion-item class="item-icon-right item item-avatar" ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
-	        	<img src="http://test218.irontec.com/EuskalErrezetak/image/categoriesList/{{category.id}}-{{category.imgBaseName}}">
-				<h2>{{category.name_es}}</h2>
-				<p>{{category.name_es}}</p>	            
-	            <i class="icon ion-chevron-right icon-accessory"></i>
-	        </ion-item>
-	    </ion-list>
+    
+    <ion-content class="has-header list-color">
+        
+        <div class="card-magick" ng-repeat="category in categories">
+            <div class="content-card">
+                <a href="#/app/categories/{{category.id}}">
+                    <img ng-src="{{urlImg}}/categoriesList/{{category.id}}-{{category.imgBaseName}}">
+                    <h2>{{category.name}}</h2>
+                </a>
+            </div>
+        
+        </div>
+        
     </ion-content>
 </ion-view>
