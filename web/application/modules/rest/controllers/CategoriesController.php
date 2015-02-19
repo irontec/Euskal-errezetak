@@ -9,8 +9,12 @@ use EuskalErrezetak\Mapper\Sql as Mappers;
 class Rest_CategoriesController extends Iron_Controller_Rest_BaseController
 {
 
+    protected $_lang;
+
     public function init()
     {
+        $this->_lang = 'es';
+
         parent::init();
     }
 
@@ -38,13 +42,21 @@ class Rest_CategoriesController extends Iron_Controller_Rest_BaseController
     {
 
         $mapper = new Mappers\Categories();
-        $items = $mapper->fetchAllToArray();
+        $items = $mapper->fetchAll();
+
+        $results = array();
+
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $results[] = $item->getRestArray($this->_lang);
+            }
+        }
 
         $this->status->setCode(200);
 
         $this->view->message = 'Ok';
-        $this->view->total = sizeof($items);
-        $this->view->categories = $items;
+        $this->view->total = sizeof($results);
+        $this->view->categories = $results;
 
     }
 
@@ -59,11 +71,24 @@ class Rest_CategoriesController extends Iron_Controller_Rest_BaseController
      *         {
      *            'id': '',
      *            'name': '',
-     *            'name_es': '',
-     *            'name_eu': '',
      *            'imgFileSize': '',
      *            'imgMimeType': '',
      *            'imgBaseName': '',
+     *            'recipes': [
+     *                 {
+     *                    'id': '',
+     *                    'name': '',
+     *                    'ingredients': '',
+     *                    'directions': '',
+     *                    'time': '',
+     *                    'difficulty': '',
+     *                    'cost': '',
+     *                    'people': '',
+     *                    'pictureFileSize': '',
+     *                    'pictureMimeType': '',
+     *                    'pictureBaseName': '',
+     *                 },
+     *             ],
      *         },
      *     ],
      *     'message': 'OK'
@@ -89,11 +114,11 @@ class Rest_CategoriesController extends Iron_Controller_Rest_BaseController
 
                 if (sizeof($item->getRecipeCategory()) > 0) {
                     foreach ($item->getRecipeCategory() as $rel) {
-                        $recipes[] = $rel->getRecipe()->toArray();
+                        $recipes[] = $rel->getRecipe()->getRestArray($this->_lang);
                     }
                 }
 
-                $catagory = $item->toArray();
+                $catagory = $item->getRestArray($this->_lang);
                 $catagory['recipes'] = $recipes;
 
                 $this->view->categories = $catagory;

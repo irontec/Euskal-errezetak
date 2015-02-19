@@ -9,8 +9,13 @@ use EuskalErrezetak\Mapper\Sql as Mappers;
 class Rest_RecipesController extends Iron_Controller_Rest_BaseController
 {
 
+    protected $_lang;
+
     public function init()
     {
+
+        $this->_lang = 'es';
+
         parent::init();
     }
 
@@ -38,13 +43,21 @@ class Rest_RecipesController extends Iron_Controller_Rest_BaseController
     {
 
         $mapper = new Mappers\Recipes();
-        $items = $mapper->fetchAllToArray();
+        $items = $mapper->fetchAll();
 
-        $this->status->setCode(empty($items) ? 204 : 200);
+        $result = array();
+
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                $result[] = $item->getRestArray($this->_lang);
+            }
+        }
+
+        $this->status->setCode(empty($result) ? 204 : 200);
 
         $this->view->message = 'Ok';
-        $this->view->total = sizeof($items);
-        $this->view->recipes = $items;
+        $this->view->total = sizeof($result);
+        $this->view->recipes = $result;
 
     }
 
@@ -96,7 +109,7 @@ class Rest_RecipesController extends Iron_Controller_Rest_BaseController
                 $this->view->recipes = array();
             } else {
                 $this->status->setCode(200);
-                $this->view->recipes = $item->toArray();
+                $this->view->recipes = $item->getRestArray();
             }
 
         } else {
