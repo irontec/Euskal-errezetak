@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
-    
+
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
-        
+
         <title>EuskalErrezetak</title>
 
         <!-- build:css styles/vendor.css -->
         <!-- <link rel="stylesheet" href="vendor/some.contrib.css"> -->
         <!-- bower:css -->
         <link rel="stylesheet" href="lib/ionic/release/css/ionic.css" />
+        <link rel="stylesheet" href="lib/ionicons/css/ionicons.css" />
         <!-- endbower -->
         <!-- endbuild -->
-   
+
         <!-- build:css({.tmp,app}) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-        
+
     </head>
 
     <body ng-app="EuskalErrezetak">
-    
+
         <ion-nav-view></ion-nav-view>
 
         <!-- build:js scripts/vendor.js -->
@@ -45,14 +46,22 @@
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers.js"></script>
-        
-        
+
+        <script src="modules/menu/controller.js"></script>
+
         <script src="modules/categories/controller.list.js"></script>
         <script src="modules/categories/controller.view.js"></script>
-        <script src="modules/categories/services/mapper.js"></script>
+
+        <script src="modules/recipes/controller.js"></script>
+        <script src="modules/staticPages/controller.js"></script>
         
+        <script src="modules/services/CategoriesMapper.js"></script>
+        <script src="modules/services/RecipesMapper.js"></script>
+        <script src="modules/services/SocialNetworks.js"></script>
+        <script src="modules/services/StaticPages.js"></script>
+
+
         <!-- endbuild -->
-        
+
 </body>
 </html>
