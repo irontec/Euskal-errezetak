@@ -34,7 +34,7 @@ class Recipes extends Raw\Recipes
         $result = array(
             'id' => $this->getId(),
             'name' => $this->getName($lang),
-            'ingredientss' => $this->getIngredients($lang),
+            'ingredients' => $this->getIngredients($lang),
             'directions' => $this->getDirections($lang),
             'time' => $this->getTime(),
             'difficulty' => $this->getDifficulty(),
