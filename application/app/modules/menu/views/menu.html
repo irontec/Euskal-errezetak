@@ -1,15 +1,13 @@
 <ion-side-menus>
     <ion-pane ion-side-menu-content>
-        <ion-nav-bar class="bar-stable bar-calm">
-            <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Atras</ion-nav-back-button>
-        </ion-nav-bar>
+        <ion-nav-bar class="bar-stable bar-calm"></ion-nav-bar>
         <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
     </ion-pane>
 
     <ion-side-menu side="left">
         <header class="bar bar-header bar-calm">
-            <h1 class="title">
-                <a href="#/app/categories">Categories</a>
+            <h1 class="title menu-title">
+                <a href="#/app/categories">Categorias</a>
             </h1>
         </header>
         <ion-content class="has-header">
@@ -37,4 +35,55 @@
             </ion-list>
         </ion-content>
     </ion-side-menu>
+    
+    <ion-side-menu side="right">
+        <header class="bar bar-header bar-calm">
+            <h1 class="title menu-title">
+                Buscador
+            </h1>
+        </header>
+        <ion-content class="has-header">
+            <ion-list>
+                   
+                <div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Nombre de la receta</span>
+                    <input type="text" placeholder="Tortilla">
+                </label>
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Categeria:
+                    </div>
+                    <select>
+	                    <option>Todas</option>
+	                    <option>A</option>
+	                    <option>B</option>
+	                    <option>C</option>
+	                    <option>D</option>
+                    </select>
+                </label>
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        Etiquetas:
+                    </div>
+                    <select>
+                        <option>Todas</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                    </select>
+                </label>
+                </div>
+                
+                <div class="padding">
+                    <button class="button button-block button-positive activated icon-left ion-ios-search-strong">Buscar</button>
+                </div>
+                
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+    
 </ion-side-menus>

@@ -1,11 +1,88 @@
 <ion-view title="{{recipe.name}}">
 
     <ion-nav-buttons side="left">
-        <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+        <button ng-show="isShowGoBack" class="button button-icon icon ion-ios7-arrow-back" ng-click="myGoBack()"> Atras</button>
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     
-    <ion-content class="has-header">
-        <h1>{{recipe.name}}</h1>
+    <ion-nav-buttons side="right">
+        <button menu-toggle="right" class="button button-icon icon ion-ios-search-strong"></button>
+    </ion-nav-buttons>
+    
+    <ion-content class="has-header content-recipe">
+        
+        <div class="row category-header-portrait" style="background-image: url('{{urlImg}}/recipesItemPortrait/{{recipe.id}}-{{recipe.pictureBaseName}}');">
+            <div class="col">
+                <h1>{{recipe.name}}</h1>
+            </div>
+        </div>
+        
+        <div class="row category-header-landscape" style="background-image: url('{{urlImg}}/recipesItemLandscape/{{recipe.id}}-{{recipe.pictureBaseName}}');">
+            <div class="col">
+                <h1>{{recipe.name}}</h1>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    <p><i class="icon ion-ios-people"></i> {{recipe.people}}</p>
+                </div>
+                
+                <div class="col">
+                    <p><i class="icon ion-ios-timer-outline"></i> {{recipe.time}}</p>
+                </div>
+            
+                <div class="col">
+                    <p><i class="icon ion-social-euro"></i> {{recipe.cost}}</p>
+                </div>
+                
+                <div class="col">
+                    
+                    <p ng-if="recipe.difficulty == 'easy'">
+                        <i class="icon ion-ios-star"></i><i class="icon ion-ios-star-outline"></i><i class="icon ion-ios-star-outline"></i>
+                    </p>
+                    
+                    <p ng-if="recipe.difficulty == 'medium'">
+                        <i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i><i class="icon ion-ios-star-outline"></i>
+                    </p>
+                    
+                    <p ng-if="recipe.difficulty == 'hard'">
+                        <i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                   <a href="#/app/categories/6">
+                   Comida tipica
+                   </a>
+                </div>
+                <div class="col">
+                etiquetas, varias, que pasa, fuck you.
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    <p><strong style="color: #43CEE6;">Ingredientes:</strong></p>
+                    <div ng-bind-html="recipe.ingredients"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    <div ng-bind-html="recipe.directions"></div>
+                </div>
+            </div>
+        </div>
+        
     </ion-content>
     
 </ion-view>
