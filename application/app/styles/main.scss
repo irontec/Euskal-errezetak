@@ -1,24 +1,40 @@
 // Your application styles go here
 
+h1.menu-title {
+    font-weight: bolder;
+    font-size: 20px !important;
+}
+
 .category-header-portrait, .category-header-landscape {
     background-repeat: no-repeat;
     min-height: 200px;
     
     h1 {
-        margin-top: 125px;
+        margin: 5px 0 5px 0 !important;
+        clear: both;
         float: right;
         color: white;
         font-weight: bold;
         background: rgba(54, 25, 25, .6);
-        padding: 6px;
+        padding: 6px !important;
         border-radius: 5px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+        width: auto !important;
+        font-size: 27px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: inline-block;
     }
 }
 
 .list-color {
     background: #ECECEC;
 }
+
+.list-space-footer-tabs {
+    bottom: 46px;
+}
+
 ion-item.recipes-list-item {
     padding: 0px !important;
 }
@@ -68,9 +84,6 @@ a {
         
     }
     
-    .ion-ios-heart {
-        color: rgb(255, 46, 46);
-    }
 }
 
 .card-magick {
@@ -82,6 +95,13 @@ a {
         text-align: center;
         margin-top: 8px;
         color: rgb(84, 84, 84);
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .category-header-portrait h1, .category-header-landscape h1 {
+        font-size: 21px;
     }
 }
 
@@ -92,6 +112,22 @@ a {
 
 .card-magick img {
     max-width: 100%;
+}
+
+.content-recipe {
+    
+    font-size: 18px;
+    color: #666;
+    background: #ECECEC;
+    
+    .icon.ion-ios-star {
+        color: rgb(255, 155, 0);
+    }
+    
+    h1 {
+        color: #FFF;
+    }
+    
 }
 
 @media screen and (orientation: portrait) {
@@ -105,6 +141,12 @@ a {
 }
 
 @media screen and (orientation: landscape) {
+    
+    .card-magick img {
+        width: 100%;
+        height: 190px;
+    }
+    
     .category-header-portrait {
         display: none;
     }
