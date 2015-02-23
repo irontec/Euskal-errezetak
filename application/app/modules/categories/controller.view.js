@@ -49,7 +49,7 @@ angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', f
         $ionicLoading.hide();
     }).catch(function(errorCallback) {
         $ionicLoading.hide();
-        ErrorCall.Message('Hay problemas para cargar las recetas.');
+        ErrorCall.Message('Hay problemas de carga.');
     });
     
 });

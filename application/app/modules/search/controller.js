@@ -9,13 +9,9 @@ angular.module('EuskalErrezetak.controllers').controller('SearchCtrl', function(
         template: 'Cargando... <i class="ion-loading-a"></i>'
     });
     
-    console.info($stateParams);
-    
     recipes.$get($stateParams).then(function(data) {
-        
         $scope.recipes = data.recipes;
         $ionicLoading.hide();
-        
     }).catch(function(errorCallback) {
         $ionicLoading.hide();
         ErrorCall.Message('Hay problemas para cargar las recetas.');

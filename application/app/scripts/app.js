@@ -61,6 +61,16 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
               }
             }
           })
+          
+          .state('app.search', {
+            url: '/search/:name/:tag/:category',
+            views: {
+              'menuContent' :{
+                templateUrl: 'modules/search/views/search.html',
+                controller: 'SearchCtrl'
+              }
+            }
+          })
 
       // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/app/categories');

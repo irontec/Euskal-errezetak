@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('EuskalErrezetak.controllers').controller('MenuCtrl', function($scope, $location, $ionicSideMenuDelegate, CategoriesMapper, StaticPagesMapper, SocialNetworksMapper, TagsMapper) {
+angular.module('EuskalErrezetak.controllers').controller('MenuCtrl', function($scope, $location, $ionicSideMenuDelegate, CategoriesMapper, StaticPagesMapper, SocialNetworksMapper, TagsMapper, ErrorCall) {
 
     var categories = new CategoriesMapper();
     var staticPages = new StaticPagesMapper();
@@ -9,18 +9,30 @@ angular.module('EuskalErrezetak.controllers').controller('MenuCtrl', function($s
 
     categories.$get().then(function(data) {
         $scope.categories = data.categories;
+    }).catch(function(errorCallback) {
+        $ionicLoading.hide();
+        ErrorCall.Message('Hay problemas de carga.');
     });
     
     tags.$get().then(function(data) {
         $scope.tags = data.tags;
+    }).catch(function(errorCallback) {
+        $ionicLoading.hide();
+        ErrorCall.Message('Hay problemas de carga.');
     });
     
     staticPages.$get().then(function(data) {
         $scope.staticPages = data.staticpages;
+    }).catch(function(errorCallback) {
+        $ionicLoading.hide();
+        ErrorCall.Message('Hay problemas de carga.');
     });
     
     socialNetworks.$get().then(function(data) {
         $scope.socialNetworks = data.socialnetworks;
+    }).catch(function(errorCallback) {
+        $ionicLoading.hide();
+        ErrorCall.Message('Hay problemas de carga.');
     });
 
     $scope.href = function(url, target) {
