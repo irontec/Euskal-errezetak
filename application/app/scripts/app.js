@@ -10,8 +10,8 @@
 
 angular.module('EuskalErrezetak.controllers', []);
 
-angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controllers', 'ngResource'])
-    .config(function($stateProvider, $urlRouterProvider) {
+angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controllers', 'ngResource', 'pascalprecht.translate'])
+    .config(function($stateProvider, $urlRouterProvider, $translateProvider) {
 
         $stateProvider
 
@@ -74,6 +74,37 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
 
       // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/app/categories');
+        
+        
+        $translateProvider.translations('es', {
+            'Resultados': 'Resultados',
+            'Nombre de la receta': 'Nombre de la receta',
+            'Atras': 'Atras',
+            'Ingredientes': 'Ingredientes',
+            'Categorias': 'Categorias',
+            'Categoria': 'Categoria',
+            'paginas': 'paginas',
+            'Buscador': 'Buscador',
+            'Etiqueta': 'Etiqueta',
+            'Buscar': 'Buscar',
+            'Siguenos en': 'Siguenos en'
+        });
+     
+        $translateProvider.translations('eu', {
+            'Resultados': '',
+            'Nombre de la receta': '',
+            'Atras': '',
+            'Ingredientes': '',
+            'Categorias': '',
+            'Categoria': '',
+            'paginas': '',
+            'Buscador': '',
+            'Etiqueta': '',
+            'Buscar': '',
+            'Siguenos en': ''
+        });
+        
+        $translateProvider.preferredLanguage('eu');
 
     })
     .run(function($ionicPlatform) {

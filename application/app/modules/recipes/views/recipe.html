@@ -1,7 +1,7 @@
 <ion-view title="{{recipe.name}}">
 
     <ion-nav-buttons side="left">
-        <button ng-show="isShowGoBack" class="button button-icon icon ion-ios7-arrow-back" ng-click="myGoBack()"> Atras</button>
+        <button ng-show="isShowGoBack" class="button button-icon icon ion-ios7-arrow-back" ng-click="myGoBack()"> {{'Atras' | translate}}</button>
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     
@@ -55,12 +55,10 @@
             
             <div class="row">
                 <div class="col">
-                   <a href="#/app/categories/6">
-                   Comida tipica
-                   </a>
+                    Comida tipica
                 </div>
                 <div class="col">
-                etiquetas, varias, que pasa, fuck you.
+                    etiquetas, varias, que pasa, fuck you.
                 </div>
             </div>
             
@@ -69,7 +67,7 @@
         <div class="card">
             <div class="row">
                 <div class="col">
-                    <p><strong style="color: #43CEE6;">Ingredientes:</strong></p>
+                    <p><strong style="color: #43CEE6;">{{'Ingredientes' | translate}}:</strong></p>
                     <div ng-bind-html="recipe.ingredients"></div>
                 </div>
             </div>
