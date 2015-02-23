@@ -17,7 +17,7 @@
  * @subpackage Model
  * @author Mikel Eizagirre
  */
- 
+
 namespace EuskalErrezetak\Model;
 class Tags extends Raw\Tags
 {
@@ -27,4 +27,17 @@ class Tags extends Raw\Tags
     public function init()
     {
     }
+
+    public function getRestArray($lang = 'es')
+    {
+
+        $result = array(
+            'id' => $this->getId(),
+            'name' => $this->getName($lang),
+        );
+
+        return $result;
+
+    }
+
 }
