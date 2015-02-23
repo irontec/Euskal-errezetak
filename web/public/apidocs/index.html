@@ -74,12 +74,12 @@
         </div>
         <hr>
         <div class="panel-group" id="accordion">
-            <h2>RecipeCategory</h2>
+            <h2>Categories</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion0" href="#collapseOne0"> /rest/recipecategory/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion0" href="#collapseOne0"> /rest/categories/</a>
         </h4>
     </div>
     <div id="collapseOne0" class="panel-collapse collapse">
@@ -97,7 +97,7 @@
 
                 <div class="tab-pane active" id="info0">
                     <div class="well">
-                    Table RecipeCategory
+                    Table Categories
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-heading"><strong>Headers</strong></div>
@@ -150,7 +150,7 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="get" name="form0" id="form0">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/categories/" method="get" name="form0" id="form0">
     
     Parameters
     <hr/>
@@ -181,11 +181,28 @@
 
 <hr>
 <pre id="sample_response0">{
-     'recipecategory': [
+     'categories': [
          {
             'id': '',
-            'recipeId': '',
-            'categoryId': '',
+            'name': '',
+            'imgFileSize': '',
+            'imgMimeType': '',
+            'imgBaseName': '',
+            'recipes': [
+                 {
+                    'id': '',
+                    'name': '',
+                    'ingredients': '',
+                    'directions': '',
+                    'time': '',
+                    'difficulty': '',
+                    'cost': '',
+                    'people': '',
+                    'pictureFileSize': '',
+                    'pictureMimeType': '',
+                    'pictureBaseName': '',
+                 },
+             ],
          },
      ],
      'message': 'OK'
@@ -197,12 +214,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div>
+</div><h2>RecipeCategory</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-primary">POST</span> <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1"> /rest/recipecategory/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1"> /rest/recipecategory/</a>
         </h4>
     </div>
     <div id="collapseOne1" class="panel-collapse collapse">
@@ -244,14 +261,7 @@
     <tbody>
         
 <tr>
-    <td>recipeId</td>
-    <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>categoryId</td>
+    <td>id</td>
     <td>mediumint</td>
     <td>Yes</td>
     <td></td>
@@ -280,17 +290,13 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="post" name="form1" id="form1">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="get" name="form1" id="form1">
     
     Parameters
     <hr/>
     
 <div class="form-group">
-    <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="categoryId" placeholder="categoryId" name="categoryId">
+    <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
 </div>
     <button type="submit" class="btn btn-success send" rel="1">Send</button>
 </form></div>
@@ -310,7 +316,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-<pre id="sample_resp_header1">HTTP 201 OK</pre>
+<pre id="sample_resp_header1">HTTP 200 OK</pre>
                             
 
 <hr>
@@ -336,7 +342,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-warning">PUT</span> <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2"> /rest/recipecategory/</a>
+            <span class="label label-primary">POST</span> <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2"> /rest/recipecategory/</a>
         </h4>
     </div>
     <div id="collapseOne2" class="panel-collapse collapse">
@@ -378,13 +384,6 @@
     <tbody>
         
 <tr>
-    <td>id</td>
-    <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
     <td>recipeId</td>
     <td>mediumint</td>
     <td>Yes</td>
@@ -421,15 +420,11 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="put" name="form2" id="form2">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="post" name="form2" id="form2">
     
     Parameters
     <hr/>
     
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
-</div>
-
 <div class="form-group">
     <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
 </div>
@@ -455,7 +450,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-<pre id="sample_resp_header2">HTTP 200 OK</pre>
+<pre id="sample_resp_header2">HTTP 201 OK</pre>
                             
 
 <hr>
@@ -467,7 +462,7 @@
             'categoryId': '',
          },
      ],
-     'message': 'Ok'
+     'message': 'OK'
  }</pre>
                         </div>
                     </div>
@@ -481,7 +476,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-danger">DELETE</span> <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3"> /rest/recipecategory/</a>
+            <span class="label label-warning">PUT</span> <a data-toggle="collapse" data-parent="#accordion3" href="#collapseOne3"> /rest/recipecategory/</a>
         </h4>
     </div>
     <div id="collapseOne3" class="panel-collapse collapse">
@@ -528,6 +523,20 @@
     <td>Yes</td>
     <td></td>
 </tr>
+
+<tr>
+    <td>recipeId</td>
+    <td>mediumint</td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td>categoryId</td>
+    <td>mediumint</td>
+    <td>Yes</td>
+    <td></td>
+</tr>
     </tbody>
 </table>
                       </div>
@@ -552,13 +561,21 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="delete" name="form3" id="form3">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="put" name="form3" id="form3">
     
     Parameters
     <hr/>
     
 <div class="form-group">
     <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control input-sm" id="categoryId" placeholder="categoryId" name="categoryId">
 </div>
     <button type="submit" class="btn btn-success send" rel="3">Send</button>
 </form></div>
@@ -583,7 +600,13 @@
 
 <hr>
 <pre id="sample_response3">{
-     'recipecategory': '',
+     'recipecategory': [
+         {
+            'id': '',
+            'recipeId': '',
+            'categoryId': '',
+         },
+     ],
      'message': 'Ok'
  }</pre>
                         </div>
@@ -593,12 +616,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div><h2>RecipeTag</h2>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne4"> /rest/recipetag/</a>
+            <span class="label label-danger">DELETE</span> <a data-toggle="collapse" data-parent="#accordion4" href="#collapseOne4"> /rest/recipecategory/</a>
         </h4>
     </div>
     <div id="collapseOne4" class="panel-collapse collapse">
@@ -616,7 +639,7 @@
 
                 <div class="tab-pane active" id="info4">
                     <div class="well">
-                    Table RecipeTag
+                    Table RecipeCategory
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-heading"><strong>Headers</strong></div>
@@ -669,7 +692,7 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="get" name="form4" id="form4">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipecategory/" method="delete" name="form4" id="form4">
     
     Parameters
     <hr/>
@@ -700,14 +723,8 @@
 
 <hr>
 <pre id="sample_response4">{
-     'recipetag': [
-         {
-            'id': '',
-            'recipeId': '',
-            'tagId': '',
-         },
-     ],
-     'message': 'OK'
+     'recipecategory': '',
+     'message': 'Ok'
  }</pre>
                         </div>
                     </div>
@@ -716,12 +733,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div>
+</div><h2>RecipeTag</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-primary">POST</span> <a data-toggle="collapse" data-parent="#accordion5" href="#collapseOne5"> /rest/recipetag/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion5" href="#collapseOne5"> /rest/recipetag/</a>
         </h4>
     </div>
     <div id="collapseOne5" class="panel-collapse collapse">
@@ -763,14 +780,7 @@
     <tbody>
         
 <tr>
-    <td>recipeId</td>
-    <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>tagId</td>
+    <td>id</td>
     <td>mediumint</td>
     <td>Yes</td>
     <td></td>
@@ -799,17 +809,13 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="post" name="form5" id="form5">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="get" name="form5" id="form5">
     
     Parameters
     <hr/>
     
 <div class="form-group">
-    <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="tagId" placeholder="tagId" name="tagId">
+    <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
 </div>
     <button type="submit" class="btn btn-success send" rel="5">Send</button>
 </form></div>
@@ -829,7 +835,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-<pre id="sample_resp_header5">HTTP 201 OK</pre>
+<pre id="sample_resp_header5">HTTP 200 OK</pre>
                             
 
 <hr>
@@ -855,7 +861,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-warning">PUT</span> <a data-toggle="collapse" data-parent="#accordion6" href="#collapseOne6"> /rest/recipetag/</a>
+            <span class="label label-primary">POST</span> <a data-toggle="collapse" data-parent="#accordion6" href="#collapseOne6"> /rest/recipetag/</a>
         </h4>
     </div>
     <div id="collapseOne6" class="panel-collapse collapse">
@@ -897,13 +903,6 @@
     <tbody>
         
 <tr>
-    <td>id</td>
-    <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
     <td>recipeId</td>
     <td>mediumint</td>
     <td>Yes</td>
@@ -940,15 +939,11 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="put" name="form6" id="form6">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="post" name="form6" id="form6">
     
     Parameters
     <hr/>
     
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
-</div>
-
 <div class="form-group">
     <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
 </div>
@@ -974,7 +969,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-<pre id="sample_resp_header6">HTTP 200 OK</pre>
+<pre id="sample_resp_header6">HTTP 201 OK</pre>
                             
 
 <hr>
@@ -986,7 +981,7 @@
             'tagId': '',
          },
      ],
-     'message': 'Ok'
+     'message': 'OK'
  }</pre>
                         </div>
                     </div>
@@ -1000,7 +995,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-danger">DELETE</span> <a data-toggle="collapse" data-parent="#accordion7" href="#collapseOne7"> /rest/recipetag/</a>
+            <span class="label label-warning">PUT</span> <a data-toggle="collapse" data-parent="#accordion7" href="#collapseOne7"> /rest/recipetag/</a>
         </h4>
     </div>
     <div id="collapseOne7" class="panel-collapse collapse">
@@ -1047,6 +1042,20 @@
     <td>Yes</td>
     <td></td>
 </tr>
+
+<tr>
+    <td>recipeId</td>
+    <td>mediumint</td>
+    <td>Yes</td>
+    <td></td>
+</tr>
+
+<tr>
+    <td>tagId</td>
+    <td>mediumint</td>
+    <td>Yes</td>
+    <td></td>
+</tr>
     </tbody>
 </table>
                       </div>
@@ -1071,13 +1080,21 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="delete" name="form7" id="form7">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="put" name="form7" id="form7">
     
     Parameters
     <hr/>
     
 <div class="form-group">
     <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control input-sm" id="recipeId" placeholder="recipeId" name="recipeId">
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control input-sm" id="tagId" placeholder="tagId" name="tagId">
 </div>
     <button type="submit" class="btn btn-success send" rel="7">Send</button>
 </form></div>
@@ -1102,7 +1119,13 @@
 
 <hr>
 <pre id="sample_response7">{
-     'recipetag': '',
+     'recipetag': [
+         {
+            'id': '',
+            'recipeId': '',
+            'tagId': '',
+         },
+     ],
      'message': 'Ok'
  }</pre>
                         </div>
@@ -1112,12 +1135,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div><h2>Recipes</h2>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion8" href="#collapseOne8"> /rest/recipes/</a>
+            <span class="label label-danger">DELETE</span> <a data-toggle="collapse" data-parent="#accordion8" href="#collapseOne8"> /rest/recipetag/</a>
         </h4>
     </div>
     <div id="collapseOne8" class="panel-collapse collapse">
@@ -1135,7 +1158,7 @@
 
                 <div class="tab-pane active" id="info8">
                     <div class="well">
-                    Table Recipes
+                    Table RecipeTag
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-heading"><strong>Headers</strong></div>
@@ -1188,7 +1211,7 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipes/" method="get" name="form8" id="form8">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipetag/" method="delete" name="form8" id="form8">
     
     Parameters
     <hr/>
@@ -1219,28 +1242,8 @@
 
 <hr>
 <pre id="sample_response8">{
-     'recipes': [
-         {
-            'id': '',
-            'name': '',
-            'name_es': '',
-            'name_eu': '',
-            'ingredients': '',
-            'ingredients_es': '',
-            'ingredients_eu': '',
-            'directions': '',
-            'directions_es': '',
-            'directions_eu': '',
-            'time': '',
-            'difficulty': '',
-            'cost': '',
-            'people': '',
-            'pictureFileSize': '',
-            'pictureMimeType': '',
-            'pictureBaseName': '',
-         },
-     ],
-     'message': 'OK'
+     'recipetag': '',
+     'message': 'Ok'
  }</pre>
                         </div>
                     </div>
@@ -1249,12 +1252,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div>
+</div><h2>Recipes</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-primary">POST</span> <a data-toggle="collapse" data-parent="#accordion9" href="#collapseOne9"> /rest/recipes/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion9" href="#collapseOne9"> /rest/recipes/</a>
         </h4>
     </div>
     <div id="collapseOne9" class="panel-collapse collapse">
@@ -1296,113 +1299,8 @@
     <tbody>
         
 <tr>
-    <td>name</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>name_es</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>name_eu</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients_es</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients_eu</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions_es</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions_eu</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>time</td>
+    <td>id</td>
     <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>difficulty</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>cost</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>people</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureFileSize</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureMimeType</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureBaseName</td>
-    <td>varchar</td>
     <td>Yes</td>
     <td></td>
 </tr>
@@ -1430,73 +1328,13 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipes/" method="post" name="form9" id="form9">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipes/" method="get" name="form9" id="form9">
     
     Parameters
     <hr/>
     
 <div class="form-group">
-    <input type="text" class="form-control input-sm" id="name" placeholder="name" name="name">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="name_es" placeholder="name_es" name="name_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="name_eu" placeholder="name_eu" name="name_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients" placeholder="ingredients" name="ingredients">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients_es" placeholder="ingredients_es" name="ingredients_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients_eu" placeholder="ingredients_eu" name="ingredients_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions" placeholder="directions" name="directions">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions_es" placeholder="directions_es" name="directions_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions_eu" placeholder="directions_eu" name="directions_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="time" placeholder="time" name="time">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="difficulty" placeholder="difficulty" name="difficulty">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="cost" placeholder="cost" name="cost">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="people" placeholder="people" name="people">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureFileSize" placeholder="pictureFileSize" name="pictureFileSize">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureMimeType" placeholder="pictureMimeType" name="pictureMimeType">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureBaseName" placeholder="pictureBaseName" name="pictureBaseName">
+    <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
 </div>
     <button type="submit" class="btn btn-success send" rel="9">Send</button>
 </form></div>
@@ -1516,7 +1354,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-<pre id="sample_resp_header9">HTTP 201 OK</pre>
+<pre id="sample_resp_header9">HTTP 200 OK</pre>
                             
 
 <hr>
@@ -1551,12 +1389,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div>
+</div><h2>SocialNetworks</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-warning">PUT</span> <a data-toggle="collapse" data-parent="#accordion10" href="#collapseOne10"> /rest/recipes/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion10" href="#collapseOne10"> /rest/socialnetworks/</a>
         </h4>
     </div>
     <div id="collapseOne10" class="panel-collapse collapse">
@@ -1574,7 +1412,7 @@
 
                 <div class="tab-pane active" id="info10">
                     <div class="well">
-                    Table Recipes
+                    Table SocialNetworks
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-heading"><strong>Headers</strong></div>
@@ -1603,118 +1441,6 @@
     <td>Yes</td>
     <td></td>
 </tr>
-
-<tr>
-    <td>name</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>name_es</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>name_eu</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients_es</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>ingredients_eu</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions_es</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>directions_eu</td>
-    <td>text</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>time</td>
-    <td>mediumint</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>difficulty</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>cost</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>people</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureFileSize</td>
-    <td>int</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureMimeType</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
-
-<tr>
-    <td>pictureBaseName</td>
-    <td>varchar</td>
-    <td>Yes</td>
-    <td></td>
-</tr>
     </tbody>
 </table>
                       </div>
@@ -1739,77 +1465,13 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipes/" method="put" name="form10" id="form10">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/socialnetworks/" method="get" name="form10" id="form10">
     
     Parameters
     <hr/>
     
 <div class="form-group">
     <input type="text" class="form-control input-sm" id="id" placeholder="id" name="id">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="name" placeholder="name" name="name">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="name_es" placeholder="name_es" name="name_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="name_eu" placeholder="name_eu" name="name_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients" placeholder="ingredients" name="ingredients">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients_es" placeholder="ingredients_es" name="ingredients_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="ingredients_eu" placeholder="ingredients_eu" name="ingredients_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions" placeholder="directions" name="directions">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions_es" placeholder="directions_es" name="directions_es">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="directions_eu" placeholder="directions_eu" name="directions_eu">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="time" placeholder="time" name="time">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="difficulty" placeholder="difficulty" name="difficulty">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="cost" placeholder="cost" name="cost">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="people" placeholder="people" name="people">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureFileSize" placeholder="pictureFileSize" name="pictureFileSize">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureMimeType" placeholder="pictureMimeType" name="pictureMimeType">
-</div>
-
-<div class="form-group">
-    <input type="text" class="form-control input-sm" id="pictureBaseName" placeholder="pictureBaseName" name="pictureBaseName">
 </div>
     <button type="submit" class="btn btn-success send" rel="10">Send</button>
 </form></div>
@@ -1834,28 +1496,20 @@
 
 <hr>
 <pre id="sample_response10">{
-     'recipes': [
+     'socialnetworks': [
          {
             'id': '',
-            'name': '',
-            'name_es': '',
-            'name_eu': '',
-            'ingredients': '',
-            'ingredients_es': '',
-            'ingredients_eu': '',
-            'directions': '',
-            'directions_es': '',
-            'directions_eu': '',
-            'time': '',
-            'difficulty': '',
-            'cost': '',
-            'people': '',
-            'pictureFileSize': '',
-            'pictureMimeType': '',
-            'pictureBaseName': '',
+            'title': '',
+            'title_es': '',
+            'title_eu': '',
+            'url': '',
+            'url_es': '',
+            'url_eu': '',
+            'status': '',
+            'icon': '',
          },
      ],
-     'message': 'Ok'
+     'message': 'OK'
  }</pre>
                         </div>
                     </div>
@@ -1864,12 +1518,12 @@
             </div><!-- .tab-content -->
         </div>
     </div>
-</div>
+</div><h2>StaticPages</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <span class="label label-danger">DELETE</span> <a data-toggle="collapse" data-parent="#accordion11" href="#collapseOne11"> /rest/recipes/</a>
+            <span class="label label-success">GET</span> <a data-toggle="collapse" data-parent="#accordion11" href="#collapseOne11"> /rest/staticpages/</a>
         </h4>
     </div>
     <div id="collapseOne11" class="panel-collapse collapse">
@@ -1887,7 +1541,7 @@
 
                 <div class="tab-pane active" id="info11">
                     <div class="well">
-                    Table Recipes
+                    Table StaticPages
                     </div>
                     <div class="panel panel-default">
                       <div class="panel-heading"><strong>Headers</strong></div>
@@ -1940,7 +1594,7 @@
     </div>
     </div>
     <div class="col-md-6">
-<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/recipes/" method="delete" name="form11" id="form11">
+<form enctype="application/x-www-form-urlencoded" role="form" action="/rest/staticpages/" method="get" name="form11" id="form11">
     
     Parameters
     <hr/>
@@ -1971,8 +1625,19 @@
 
 <hr>
 <pre id="sample_response11">{
-     'recipes': '',
-     'message': 'Ok'
+     'staticpages': [
+         {
+            'id': '',
+            'title': '',
+            'title_es': '',
+            'title_eu': '',
+            'description': '',
+            'description_es': '',
+            'description_eu': '',
+            'status': '',
+         },
+     ],
+     'message': 'OK'
  }</pre>
                         </div>
                     </div>
@@ -1987,7 +1652,7 @@
 
         <div class="row mt0 footer">
             <div class="col-md-6" align="left">
-                Generated on 2015-02-17, 16:52:26
+                Generated on 2015-02-23, 18:24:18
             </div>
             <div class="col-md-6" align="right">
                 <a href="https://github.com/calinrada/php-apidoc" target="_blank">php-apidoc v 1.3.4</a>
