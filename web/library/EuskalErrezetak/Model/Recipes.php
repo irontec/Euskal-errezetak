@@ -31,6 +31,23 @@ class Recipes extends Raw\Recipes
     public function getRestArray($lang = 'es')
     {
 
+        $tagsLiteral = array();
+        $categoriesLiteral = array();
+
+        $relCategories = $this->getRecipeCategory();
+        if (!empty($relCategories)) {
+            foreach ($relCategories as $relation) {
+                $categoriesLiteral[] = $relation->getCategory()->getName($lang);
+            }
+        }
+
+        $relTags = $this->getRecipeTag();
+        if (!empty($relTags)) {
+            foreach ($relTags as $relation) {
+                $tagsLiteral[] = $relation->getTag()->getName($lang);
+            }
+        }
+
         $result = array(
             'id' => $this->getId(),
             'name' => $this->getName($lang),
@@ -43,9 +60,12 @@ class Recipes extends Raw\Recipes
             'pictureFileSize' => $this->getPictureFileSize(),
             'pictureMimeType' => $this->getPictureMimeType(),
             'pictureBaseName' => $this->getPictureBaseName(),
+            'categoriesLiteral' => implode(', ', $categoriesLiteral),
+            'tagsLiteral' => implode(', ', $tagsLiteral)
         );
 
         return $result;
+
     }
 
 }
