@@ -104,7 +104,7 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
             'Siguenos en': ''
         });
         
-        $translateProvider.preferredLanguage('eu');
+        $translateProvider.preferredLanguage('es');
 
     })
     .run(function($ionicPlatform) {
