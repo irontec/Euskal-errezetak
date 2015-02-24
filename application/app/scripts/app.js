@@ -91,17 +91,17 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
         });
      
         $translateProvider.translations('eu', {
-            'Resultados': '',
-            'Nombre de la receta': '',
-            'Atras': '',
-            'Ingredientes': '',
-            'Categorias': '',
-            'Categoria': '',
-            'paginas': '',
-            'Buscador': '',
-            'Etiqueta': '',
-            'Buscar': '',
-            'Siguenos en': ''
+            'Resultados': 'Emaitzak',
+            'Nombre de la receta': 'Errezetaren izena',
+            'Atras': 'Atzera',
+            'Ingredientes': 'Osagaiak',
+            'Categorias': 'Kategoriak',
+            'Categoria': 'Kategoria',
+            'paginas': 'orri',
+            'Buscador': 'Bilatzailea',
+            'Etiqueta': 'Etiketa',
+            'Buscar': 'Bilatu',
+            'Siguenos en': 'Jarrai gaitzazu'
         });
         
         $translateProvider.preferredLanguage('es');
