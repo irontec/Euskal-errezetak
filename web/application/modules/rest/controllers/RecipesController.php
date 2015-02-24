@@ -14,7 +14,7 @@ class Rest_RecipesController extends Iron_Controller_Rest_BaseController
     public function init()
     {
 
-        $this->_lang = 'es';
+        $this->_lang = 'eu';
 
         parent::init();
     }
@@ -126,7 +126,7 @@ class Rest_RecipesController extends Iron_Controller_Rest_BaseController
                 $this->view->recipes = array();
             } else {
                 $this->status->setCode(200);
-                $this->view->recipes = $item->getRestArray();
+                $this->view->recipes = $item->getRestArray($this->_lang);
             }
 
         } else {

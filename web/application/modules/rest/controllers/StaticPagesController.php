@@ -13,7 +13,7 @@ class Rest_StaticPagesController extends Iron_Controller_Rest_BaseController
 
     public function init()
     {
-        $this->_lang = 'es';
+        $this->_lang = 'eu';
         parent::init();
     }
 
