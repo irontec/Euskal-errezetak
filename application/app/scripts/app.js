@@ -91,13 +91,13 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
         });
      
         $translateProvider.translations('eu', {
-            'Resultados': 'Emaitzak',
+            'Resultados': 'Bilaketaren emaitzak',
             'Nombre de la receta': 'Errezetaren izena',
             'Atras': 'Atzera',
             'Ingredientes': 'Osagaiak',
             'Categorias': 'Kategoriak',
             'Categoria': 'Kategoria',
-            'paginas': 'orri',
+            'paginas': 'Atalak',
             'Buscador': 'Bilatzailea',
             'Etiqueta': 'Etiketa',
             'Buscar': 'Bilatu',
@@ -119,5 +119,5 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
         });
     })
     .constant(
-        'baseUrl', 'http://test218.irontec.com/EuskalErrezetak/'
+        'baseUrl', 'http://test213.irontec.com/EuskalErrezetak/'
     );

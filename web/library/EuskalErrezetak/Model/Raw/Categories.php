@@ -215,7 +215,9 @@ class Categories extends ModelAbstract
             $this->_logChange('id');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_id = $data;
+        } else if (!is_null($data)) {
             $this->_id = (int) $data;
         } else {
             $this->_id = $data;
@@ -240,7 +242,6 @@ class Categories extends ModelAbstract
      */
     public function setName($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -288,15 +289,17 @@ class Categories extends ModelAbstract
     public function setNameEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEs != $data) {
             $this->_logChange('nameEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEs = $data;
+        } else if (!is_null($data)) {
             $this->_nameEs = (string) $data;
         } else {
             $this->_nameEs = $data;
@@ -322,15 +325,17 @@ class Categories extends ModelAbstract
     public function setNameEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEu != $data) {
             $this->_logChange('nameEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEu = $data;
+        } else if (!is_null($data)) {
             $this->_nameEu = (string) $data;
         } else {
             $this->_nameEu = $data;
@@ -360,7 +365,9 @@ class Categories extends ModelAbstract
             $this->_logChange('imgFileSize');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_imgFileSize = $data;
+        } else if (!is_null($data)) {
             $this->_imgFileSize = (int) $data;
         } else {
             $this->_imgFileSize = $data;
@@ -390,7 +397,9 @@ class Categories extends ModelAbstract
             $this->_logChange('imgMimeType');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_imgMimeType = $data;
+        } else if (!is_null($data)) {
             $this->_imgMimeType = (string) $data;
         } else {
             $this->_imgMimeType = $data;
@@ -420,7 +429,9 @@ class Categories extends ModelAbstract
             $this->_logChange('imgBaseName');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_imgBaseName = $data;
+        } else if (!is_null($data)) {
             $this->_imgBaseName = (string) $data;
         } else {
             $this->_imgBaseName = $data;
@@ -512,7 +523,15 @@ class Categories extends ModelAbstract
     {
         $fkName = 'RecipeCategoryIbfk2';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
             $this->_RecipeCategory = $related;
             $this->_setLoaded($fkName);

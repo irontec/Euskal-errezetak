@@ -53,7 +53,7 @@ class Recipes extends Raw\Recipes
             'name' => $this->getName($lang),
             'ingredients' => $this->getIngredients($lang),
             'directions' => $this->getDirections($lang),
-            'time' => $this->getTime(),
+            'time' => $this->getTime($lang),
             'difficulty' => $this->getDifficulty(),
             'cost' => $this->getCost(),
             'people' => $this->getPeople(),

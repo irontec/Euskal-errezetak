@@ -145,7 +145,9 @@ class Tags extends ModelAbstract
             $this->_logChange('id');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_id = $data;
+        } else if (!is_null($data)) {
             $this->_id = (int) $data;
         } else {
             $this->_id = $data;
@@ -170,7 +172,6 @@ class Tags extends ModelAbstract
      */
     public function setName($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -218,15 +219,17 @@ class Tags extends ModelAbstract
     public function setNameEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEs != $data) {
             $this->_logChange('nameEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEs = $data;
+        } else if (!is_null($data)) {
             $this->_nameEs = (string) $data;
         } else {
             $this->_nameEs = $data;
@@ -252,15 +255,17 @@ class Tags extends ModelAbstract
     public function setNameEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEu != $data) {
             $this->_logChange('nameEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEu = $data;
+        } else if (!is_null($data)) {
             $this->_nameEu = (string) $data;
         } else {
             $this->_nameEu = $data;
@@ -352,7 +357,15 @@ class Tags extends ModelAbstract
     {
         $fkName = 'RecipeTagIbfk2';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
             $this->_RecipeTag = $related;
             $this->_setLoaded($fkName);

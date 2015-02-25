@@ -256,7 +256,7 @@ class KlearUsers extends MapperAbstract
 
     /**
      * Saves current row
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function save(\EuskalErrezetak\Model\Raw\KlearUsers $model)
     {
@@ -268,7 +268,7 @@ class KlearUsers extends MapperAbstract
      *
      * @param \EuskalErrezetak\Model\Raw\KlearUsers $model
      * @param boolean $useTransaction Flag to indicate if save should be done inside a database transaction
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function saveRecursive(\EuskalErrezetak\Model\Raw\KlearUsers $model, $useTransaction = true, $transactionTag = null)
     {

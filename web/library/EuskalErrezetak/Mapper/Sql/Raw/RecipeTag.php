@@ -253,7 +253,7 @@ class RecipeTag extends MapperAbstract
 
     /**
      * Saves current row
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function save(\EuskalErrezetak\Model\Raw\RecipeTag $model)
     {
@@ -265,7 +265,7 @@ class RecipeTag extends MapperAbstract
      *
      * @param \EuskalErrezetak\Model\Raw\RecipeTag $model
      * @param boolean $useTransaction Flag to indicate if save should be done inside a database transaction
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function saveRecursive(\EuskalErrezetak\Model\Raw\RecipeTag $model, $useTransaction = true, $transactionTag = null)
     {

@@ -149,7 +149,9 @@ class KlearUsers extends ModelAbstract
             $this->_logChange('userId');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_userId = $data;
+        } else if (!is_null($data)) {
             $this->_userId = (int) $data;
         } else {
             $this->_userId = $data;
@@ -175,15 +177,17 @@ class KlearUsers extends ModelAbstract
     public function setLogin($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_login != $data) {
             $this->_logChange('login');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_login = $data;
+        } else if (!is_null($data)) {
             $this->_login = (string) $data;
         } else {
             $this->_login = $data;
@@ -209,15 +213,17 @@ class KlearUsers extends ModelAbstract
     public function setEmail($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_email != $data) {
             $this->_logChange('email');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_email = $data;
+        } else if (!is_null($data)) {
             $this->_email = (string) $data;
         } else {
             $this->_email = $data;
@@ -243,15 +249,17 @@ class KlearUsers extends ModelAbstract
     public function setPass($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_pass != $data) {
             $this->_logChange('pass');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_pass = $data;
+        } else if (!is_null($data)) {
             $this->_pass = (string) $data;
         } else {
             $this->_pass = $data;
@@ -281,7 +289,9 @@ class KlearUsers extends ModelAbstract
             $this->_logChange('active');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_active = $data;
+        } else if (!is_null($data)) {
             $this->_active = (int) $data;
         } else {
             $this->_active = $data;
@@ -333,6 +343,7 @@ class KlearUsers extends ModelAbstract
         if ($this->_createdOn != $data) {
             $this->_logChange('createdOn');
         }
+
 
         $this->_createdOn = $data;
         return $this;

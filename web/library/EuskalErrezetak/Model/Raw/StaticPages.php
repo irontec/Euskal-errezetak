@@ -174,7 +174,9 @@ class StaticPages extends ModelAbstract
             $this->_logChange('id');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_id = $data;
+        } else if (!is_null($data)) {
             $this->_id = (int) $data;
         } else {
             $this->_id = $data;
@@ -199,7 +201,6 @@ class StaticPages extends ModelAbstract
      */
     public function setTitle($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -247,15 +248,17 @@ class StaticPages extends ModelAbstract
     public function setTitleEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_titleEs != $data) {
             $this->_logChange('titleEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_titleEs = $data;
+        } else if (!is_null($data)) {
             $this->_titleEs = (string) $data;
         } else {
             $this->_titleEs = $data;
@@ -281,15 +284,17 @@ class StaticPages extends ModelAbstract
     public function setTitleEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_titleEu != $data) {
             $this->_logChange('titleEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_titleEu = $data;
+        } else if (!is_null($data)) {
             $this->_titleEu = (string) $data;
         } else {
             $this->_titleEu = $data;
@@ -314,7 +319,6 @@ class StaticPages extends ModelAbstract
      */
     public function setDescription($data, $language = '')
     {
-
 
         $language = $this->_getCurrentLanguage($language);
 
@@ -362,7 +366,9 @@ class StaticPages extends ModelAbstract
             $this->_logChange('descriptionEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_descriptionEs = $data;
+        } else if (!is_null($data)) {
             $this->_descriptionEs = (string) $data;
         } else {
             $this->_descriptionEs = $data;
@@ -392,7 +398,9 @@ class StaticPages extends ModelAbstract
             $this->_logChange('descriptionEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_descriptionEu = $data;
+        } else if (!is_null($data)) {
             $this->_descriptionEu = (string) $data;
         } else {
             $this->_descriptionEu = $data;
@@ -422,7 +430,9 @@ class StaticPages extends ModelAbstract
             $this->_logChange('status');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_status = $data;
+        } else if (!is_null($data)) {
             if (!in_array($data, $this->_statusAcceptedValues) && !empty($data)) {
                 throw new \InvalidArgumentException(_('Invalid value for status'));
             }

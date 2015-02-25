@@ -110,11 +110,26 @@ class Recipes extends ModelAbstract
     protected $_directionsEu;
 
     /**
-     * Database var type mediumint
+     * [ml]
+     * Database var type varchar
      *
-     * @var int
+     * @var string
      */
     protected $_time;
+
+    /**
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_timeEs;
+
+    /**
+     * Database var type varchar
+     *
+     * @var string
+     */
+    protected $_timeEu;
 
     /**
      * [enum:easy|medium|hard]
@@ -191,6 +206,8 @@ class Recipes extends ModelAbstract
         'directions_es'=>'directionsEs',
         'directions_eu'=>'directionsEu',
         'time'=>'time',
+        'time_es'=>'timeEs',
+        'time_eu'=>'timeEu',
         'difficulty'=>'difficulty',
         'cost'=>'cost',
         'people'=>'people',
@@ -212,6 +229,7 @@ class Recipes extends ModelAbstract
             'directions'=> array('html','ml'),
             'directions_es'=> array('html'),
             'directions_eu'=> array('html'),
+            'time'=> array('ml'),
             'difficulty'=> array('enum:easy|medium|hard'),
             'pictureFileSize'=> array('FSO'),
         ));
@@ -220,6 +238,7 @@ class Recipes extends ModelAbstract
             'name'=>'Name',
             'ingredients'=>'Ingredients',
             'directions'=>'Directions',
+            'time'=>'Time',
         ));
 
         $this->setAvailableLangs(array('eu', 'es'));
@@ -328,7 +347,9 @@ class Recipes extends ModelAbstract
             $this->_logChange('id');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_id = $data;
+        } else if (!is_null($data)) {
             $this->_id = (int) $data;
         } else {
             $this->_id = $data;
@@ -353,7 +374,6 @@ class Recipes extends ModelAbstract
      */
     public function setName($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -401,15 +421,17 @@ class Recipes extends ModelAbstract
     public function setNameEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEs != $data) {
             $this->_logChange('nameEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEs = $data;
+        } else if (!is_null($data)) {
             $this->_nameEs = (string) $data;
         } else {
             $this->_nameEs = $data;
@@ -435,15 +457,17 @@ class Recipes extends ModelAbstract
     public function setNameEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_nameEu != $data) {
             $this->_logChange('nameEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_nameEu = $data;
+        } else if (!is_null($data)) {
             $this->_nameEu = (string) $data;
         } else {
             $this->_nameEu = $data;
@@ -468,7 +492,6 @@ class Recipes extends ModelAbstract
      */
     public function setIngredients($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -516,15 +539,17 @@ class Recipes extends ModelAbstract
     public function setIngredientsEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_ingredientsEs != $data) {
             $this->_logChange('ingredientsEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_ingredientsEs = $data;
+        } else if (!is_null($data)) {
             $this->_ingredientsEs = (string) $data;
         } else {
             $this->_ingredientsEs = $data;
@@ -552,15 +577,17 @@ class Recipes extends ModelAbstract
     public function setIngredientsEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_ingredientsEu != $data) {
             $this->_logChange('ingredientsEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_ingredientsEu = $data;
+        } else if (!is_null($data)) {
             $this->_ingredientsEu = (string) $data;
         } else {
             $this->_ingredientsEu = $data;
@@ -587,7 +614,6 @@ class Recipes extends ModelAbstract
      */
     public function setDirections($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
@@ -635,15 +661,17 @@ class Recipes extends ModelAbstract
     public function setDirectionsEs($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_directionsEs != $data) {
             $this->_logChange('directionsEs');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_directionsEs = $data;
+        } else if (!is_null($data)) {
             $this->_directionsEs = (string) $data;
         } else {
             $this->_directionsEs = $data;
@@ -671,15 +699,17 @@ class Recipes extends ModelAbstract
     public function setDirectionsEu($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_directionsEu != $data) {
             $this->_logChange('directionsEu');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_directionsEu = $data;
+        } else if (!is_null($data)) {
             $this->_directionsEu = (string) $data;
         } else {
             $this->_directionsEu = $data;
@@ -701,36 +731,120 @@ class Recipes extends ModelAbstract
 
     /**
      * Sets column Stored in ISO 8601 format.     *
-     * @param int $data
+     * @param string $data
      * @return \EuskalErrezetak\Model\Raw\Recipes
      */
-    public function setTime($data)
+    public function setTime($data, $language = '')
     {
-
 
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
-        if ($this->_time != $data) {
-            $this->_logChange('time');
-        }
 
-        if (!is_null($data)) {
-            $this->_time = (int) $data;
-        } else {
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "setTime". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
             $this->_time = $data;
+            return $this;
         }
+        $this->$methodName($data);
         return $this;
     }
 
     /**
      * Gets column time
      *
-     * @return int
+     * @return string
      */
-    public function getTime()
+    public function getTime($language = '')
     {
+    
+        $language = $this->_getCurrentLanguage($language);
+
+        $methodName = "getTime". ucfirst(str_replace('_', '', $language));
+        if (!method_exists($this, $methodName)) {
+
+            // new \Exception('Unavailable language');
             return $this->_time;
+        }
+
+        return $this->$methodName();
+
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setTimeEs($data)
+    {
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+
+        if ($this->_timeEs != $data) {
+            $this->_logChange('timeEs');
+        }
+
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_timeEs = $data;
+        } else if (!is_null($data)) {
+            $this->_timeEs = (string) $data;
+        } else {
+            $this->_timeEs = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column time_es
+     *
+     * @return string
+     */
+    public function getTimeEs()
+    {
+            return $this->_timeEs;
+    }
+
+    /**
+     * Sets column Stored in ISO 8601 format.     *
+     * @param string $data
+     * @return \EuskalErrezetak\Model\Raw\Recipes
+     */
+    public function setTimeEu($data)
+    {
+
+        if (is_null($data)) {
+            throw new \InvalidArgumentException(_('Required values cannot be null'));
+        }
+
+        if ($this->_timeEu != $data) {
+            $this->_logChange('timeEu');
+        }
+
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_timeEu = $data;
+        } else if (!is_null($data)) {
+            $this->_timeEu = (string) $data;
+        } else {
+            $this->_timeEu = $data;
+        }
+        return $this;
+    }
+
+    /**
+     * Gets column time_eu
+     *
+     * @return string
+     */
+    public function getTimeEu()
+    {
+            return $this->_timeEu;
     }
 
     /**
@@ -741,15 +855,17 @@ class Recipes extends ModelAbstract
     public function setDifficulty($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_difficulty != $data) {
             $this->_logChange('difficulty');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_difficulty = $data;
+        } else if (!is_null($data)) {
             if (!in_array($data, $this->_difficultyAcceptedValues) && !empty($data)) {
                 throw new \InvalidArgumentException(_('Invalid value for difficulty'));
             }
@@ -778,15 +894,17 @@ class Recipes extends ModelAbstract
     public function setCost($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_cost != $data) {
             $this->_logChange('cost');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_cost = $data;
+        } else if (!is_null($data)) {
             $this->_cost = (int) $data;
         } else {
             $this->_cost = $data;
@@ -812,15 +930,17 @@ class Recipes extends ModelAbstract
     public function setPeople($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_people != $data) {
             $this->_logChange('people');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_people = $data;
+        } else if (!is_null($data)) {
             $this->_people = (int) $data;
         } else {
             $this->_people = $data;
@@ -850,7 +970,9 @@ class Recipes extends ModelAbstract
             $this->_logChange('pictureFileSize');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_pictureFileSize = $data;
+        } else if (!is_null($data)) {
             $this->_pictureFileSize = (int) $data;
         } else {
             $this->_pictureFileSize = $data;
@@ -880,7 +1002,9 @@ class Recipes extends ModelAbstract
             $this->_logChange('pictureMimeType');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_pictureMimeType = $data;
+        } else if (!is_null($data)) {
             $this->_pictureMimeType = (string) $data;
         } else {
             $this->_pictureMimeType = $data;
@@ -910,7 +1034,9 @@ class Recipes extends ModelAbstract
             $this->_logChange('pictureBaseName');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_pictureBaseName = $data;
+        } else if (!is_null($data)) {
             $this->_pictureBaseName = (string) $data;
         } else {
             $this->_pictureBaseName = $data;
@@ -1002,7 +1128,15 @@ class Recipes extends ModelAbstract
     {
         $fkName = 'RecipeCategoryIbfk1';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
             $this->_RecipeCategory = $related;
             $this->_setLoaded($fkName);
@@ -1084,7 +1218,15 @@ class Recipes extends ModelAbstract
     {
         $fkName = 'RecipeTagIbfk1';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('dependent', $fkName, $this, $where, $orderBy);
             $this->_RecipeTag = $related;
             $this->_setLoaded($fkName);

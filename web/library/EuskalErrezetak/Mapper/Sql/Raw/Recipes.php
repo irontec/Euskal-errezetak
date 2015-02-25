@@ -53,7 +53,8 @@ class Recipes extends MapperAbstract
             'ingredients_eu' => $model->getIngredientsEu(),
             'directions_es' => $model->getDirectionsEs(),
             'directions_eu' => $model->getDirectionsEu(),
-            'time' => $model->getTime(),
+            'time_es' => $model->getTimeEs(),
+            'time_eu' => $model->getTimeEu(),
             'difficulty' => $model->getDifficulty(),
             'cost' => $model->getCost(),
             'people' => $model->getPeople(),
@@ -264,7 +265,7 @@ class Recipes extends MapperAbstract
 
     /**
      * Saves current row
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function save(\EuskalErrezetak\Model\Raw\Recipes $model)
     {
@@ -276,7 +277,7 @@ class Recipes extends MapperAbstract
      *
      * @param \EuskalErrezetak\Model\Raw\Recipes $model
      * @param boolean $useTransaction Flag to indicate if save should be done inside a database transaction
-     * @return boolean If the save action was successful
+     * @return integer primary key for autoincrement fields if the save action was successful
      */
     public function saveRecursive(\EuskalErrezetak\Model\Raw\Recipes $model, $useTransaction = true, $transactionTag = null)
     {
@@ -536,7 +537,8 @@ class Recipes extends MapperAbstract
                   ->setIngredientsEu($data['ingredients_eu'])
                   ->setDirectionsEs($data['directions_es'])
                   ->setDirectionsEu($data['directions_eu'])
-                  ->setTime($data['time'])
+                  ->setTimeEs($data['time_es'])
+                  ->setTimeEu($data['time_eu'])
                   ->setDifficulty($data['difficulty'])
                   ->setCost($data['cost'])
                   ->setPeople($data['people'])
@@ -551,7 +553,8 @@ class Recipes extends MapperAbstract
                   ->setIngredientsEu($data->{'ingredients_eu'})
                   ->setDirectionsEs($data->{'directions_es'})
                   ->setDirectionsEu($data->{'directions_eu'})
-                  ->setTime($data->{'time'})
+                  ->setTimeEs($data->{'time_es'})
+                  ->setTimeEu($data->{'time_eu'})
                   ->setDifficulty($data->{'difficulty'})
                   ->setCost($data->{'cost'})
                   ->setPeople($data->{'people'})
@@ -567,7 +570,8 @@ class Recipes extends MapperAbstract
                   ->setIngredientsEu($data->getIngredientsEu())
                   ->setDirectionsEs($data->getDirectionsEs())
                   ->setDirectionsEu($data->getDirectionsEu())
-                  ->setTime($data->getTime())
+                  ->setTimeEs($data->getTimeEs())
+                  ->setTimeEu($data->getTimeEu())
                   ->setDifficulty($data->getDifficulty())
                   ->setCost($data->getCost())
                   ->setPeople($data->getPeople())

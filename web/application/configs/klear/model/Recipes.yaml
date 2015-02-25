@@ -26,7 +26,7 @@ production:
           collapseLanguageBoxes: true
     time:
       title: ngettext('Time', 'Times', 1)
-      type: number
+      type: text
       required: true
       source:
         control: Spinner

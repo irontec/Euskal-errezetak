@@ -144,7 +144,9 @@ class RecipeTag extends ModelAbstract
             $this->_logChange('id');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_id = $data;
+        } else if (!is_null($data)) {
             $this->_id = (int) $data;
         } else {
             $this->_id = $data;
@@ -170,15 +172,17 @@ class RecipeTag extends ModelAbstract
     public function setRecipeId($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_recipeId != $data) {
             $this->_logChange('recipeId');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_recipeId = $data;
+        } else if (!is_null($data)) {
             $this->_recipeId = (int) $data;
         } else {
             $this->_recipeId = $data;
@@ -204,15 +208,17 @@ class RecipeTag extends ModelAbstract
     public function setTagId($data)
     {
 
-
         if (is_null($data)) {
             throw new \InvalidArgumentException(_('Required values cannot be null'));
         }
+
         if ($this->_tagId != $data) {
             $this->_logChange('tagId');
         }
 
-        if (!is_null($data)) {
+        if ($data instanceof \Zend_Db_Expr) {
+            $this->_tagId = $data;
+        } else if (!is_null($data)) {
             $this->_tagId = (int) $data;
         } else {
             $this->_tagId = $data;
@@ -263,10 +269,20 @@ class RecipeTag extends ModelAbstract
     {
         $fkName = 'RecipeTagIbfk1';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('parent', $fkName, $this, $where, $orderBy);
             $this->_Recipe = array_shift($related);
-            $this->_setLoaded($fkName);
+            if ($usingDefaultArguments) {
+                $this->_setLoaded($fkName);
+            }
         }
 
         return $this->_Recipe;
@@ -304,10 +320,20 @@ class RecipeTag extends ModelAbstract
     {
         $fkName = 'RecipeTagIbfk2';
 
-        if (!$avoidLoading && !$this->_isLoaded($fkName)) {
+        $usingDefaultArguments = is_null($where) && is_null($orderBy);
+        if (!$usingDefaultArguments) {
+            $this->setNotLoaded($fkName);
+        }
+
+        $dontSkipLoading = !($avoidLoading);
+        $notLoadedYet = !($this->_isLoaded($fkName));
+
+        if ($dontSkipLoading && $notLoadedYet) {
             $related = $this->getMapper()->loadRelated('parent', $fkName, $this, $where, $orderBy);
             $this->_Tag = array_shift($related);
-            $this->_setLoaded($fkName);
+            if ($usingDefaultArguments) {
+                $this->_setLoaded($fkName);
+            }
         }
 
         return $this->_Tag;
