@@ -1,69 +1,59 @@
-<ion-view title="{{recipe.name}}">
+<ion-view title="{{ recipe.name }}">
 
     <ion-nav-buttons side="left">
-        <button ng-show="isShowGoBack" class="button button-icon icon ion-ios7-arrow-back" ng-click="myGoBack()"> {{'Atras' | translate}}</button>
+        <button  ng-show="isShowGoBack" class="button button-icon icon ion-ios7-arrow-back" ng-click="myGoBack()"><span id="backText">  {{'Atras' | translate}}</span></button>
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    
+
     <ion-nav-buttons side="right">
         <button menu-toggle="right" class="button button-icon icon ion-ios-search-strong"></button>
     </ion-nav-buttons>
-    
+
     <ion-content class="has-header content-recipe">
-        
+
         <div class="row category-header-portrait" style="background-image: url('{{urlImg}}/recipesItemPortrait/{{recipe.id}}-{{recipe.pictureBaseName}}');">
             <div class="col">
                 <h1>{{recipe.name}}</h1>
             </div>
         </div>
-        
+
         <div class="row category-header-landscape" style="background-image: url('{{urlImg}}/recipesItemLandscape/{{recipe.id}}-{{recipe.pictureBaseName}}');">
             <div class="col">
                 <h1>{{recipe.name}}</h1>
             </div>
         </div>
-        
-        <div class="card">
+
+        <div class="card recipe-info">
             <div class="row">
-                <div class="col">
+                <div class="col col-20">
                     <p><i class="icon ion-ios-people"></i> {{recipe.people}}</p>
                 </div>
-                
-                <div class="col">
+
+                <div class="col col-40">
                     <p><i class="icon ion-ios-timer-outline"></i> {{recipe.time}}</p>
                 </div>
-            
-                <div class="col">
+
+                <div class="col col-20">
                     <p><i class="icon ion-social-euro"></i> {{recipe.cost}}</p>
                 </div>
-                
-                <div class="col">
-                    
+
+                <div class="col col-20">
+
                     <p ng-if="recipe.difficulty == 'easy'">
                         <i class="icon ion-ios-star"></i><i class="icon ion-ios-star-outline"></i><i class="icon ion-ios-star-outline"></i>
                     </p>
-                    
+
                     <p ng-if="recipe.difficulty == 'medium'">
                         <i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i><i class="icon ion-ios-star-outline"></i>
                     </p>
-                    
+
                     <p ng-if="recipe.difficulty == 'hard'">
                         <i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i><i class="icon ion-ios-star"></i>
                     </p>
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col">
-                    {{recipe.categoriesLiteral}}
-                </div>
-                <div class="col">
-                    {{recipe.tagsLiteral}}
-                </div>
-            </div>
-            
         </div>
-        
+
         <div class="card">
             <div class="row">
                 <div class="col">
@@ -72,7 +62,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="card">
             <div class="row">
                 <div class="col">
@@ -80,7 +70,22 @@
                 </div>
             </div>
         </div>
-        
+
+        <div class="card">
+            <div class="row" ng-show="recipe.tagsLiteral">
+                <div class="col">
+                    <p><strong style="color: #43CEE6;">{{'Etiquetas' | translate}}:</strong></p>
+                    <div ng-bind-html="recipe.tagsLiteral"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p><strong style="color: #43CEE6;">{{'Categorias' | translate}}:</strong></p>
+                    <div ng-bind-html="recipe.categoriesLiteral"></div>
+                </div>
+            </div>
+        </div>
+
     </ion-content>
-    
+
 </ion-view>

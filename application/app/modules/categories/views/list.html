@@ -3,22 +3,22 @@
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    
+
     <ion-nav-buttons side="right">
         <button menu-toggle="right" class="button button-icon icon ion-ios-search-strong"></button>
     </ion-nav-buttons>
-    
+
     <ion-content class="has-header list-color">
-        
+
         <div class="card-magick" ng-repeat="category in categories">
             <div class="content-card">
                 <a href="#/app/categories/{{category.id}}">
                     <img ng-src="{{urlImg}}/categoriesList/{{category.id}}-{{category.imgBaseName}}">
-                    <h2>{{category.name}}</h2>
+                    <div class="category-name"><h2>{{category.name}}</h2></div>
                 </a>
             </div>
-        
+
         </div>
-        
+
     </ion-content>
 </ion-view>

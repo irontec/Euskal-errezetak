@@ -86,10 +86,11 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
             'paginas': 'paginas',
             'Buscador': 'Buscador',
             'Etiqueta': 'Etiqueta',
+            'Etiquetas': 'Etiquetas',
             'Buscar': 'Buscar',
             'Siguenos en': 'Siguenos en'
         });
-     
+
         $translateProvider.translations('eu', {
             'Resultados': 'Bilaketaren emaitzak',
             'Nombre de la receta': 'Errezetaren izena',
@@ -100,6 +101,7 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
             'paginas': 'Atalak',
             'Buscador': 'Bilatzailea',
             'Etiqueta': 'Etiketa',
+            'Etiquetas': 'Etiketak',
             'Buscar': 'Bilatu',
             'Siguenos en': 'Jarrai gaitzazu'
         });
@@ -123,5 +125,5 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
         });
     })
     .constant(
-        'baseUrl', 'http://test218.irontec.com/EuskalErrezetak/'
+        'baseUrl', 'http://test213.irontec.com/EuskalErrezetak/'
     );
