@@ -125,5 +125,5 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
         });
     })
     .constant(
-        'baseUrl', 'http://test213.irontec.com/EuskalErrezetak/'
+        'baseUrl', 'http://ikastek.net/EuskalErrezetak/'
     );
