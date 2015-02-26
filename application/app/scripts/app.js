@@ -108,16 +108,20 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
 
     })
     .run(function($ionicPlatform) {
+    
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.hide();
+            ionic.Platform.fullScreen();
+        }
 
         $ionicPlatform.ready(function() {
             if(window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            }
-            if(window.StatusBar) {
-                StatusBar.styleDefault();
-            }
+        }
+            
         });
     })
     .constant(
-        'baseUrl', 'http://test213.irontec.com/EuskalErrezetak/'
+        'baseUrl', 'http://test218.irontec.com/EuskalErrezetak/'
     );
