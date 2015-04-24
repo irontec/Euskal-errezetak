@@ -6,36 +6,31 @@
 
     <ion-side-menu side="left">
         <header class="bar bar-header bar-calm">
-            <h1 class="title menu-title">
-                <a href="#/app/categories">{{'Categorias' | translate}}</a>
-            </h1>
+            <!--h1 class="title menu-title">
+                <a href="#/app/categories">#Aukerak#</a>
+            </h1-->
         </header>
         <ion-content class="has-header">
             <ion-list>
+                <ion-item class="item-divider">
+                    {{'Categorias' | translate}}
+                </ion-item>
                 <ion-item nav-clear menu-close ng-repeat="category in categories" href="#/app/categories/{{category.id}}">
                     {{category.name}}
                 </ion-item>
-                
+
                 <ion-item class="item-divider">
-                    {{'paginas' | translate}}
+                    {{'Sobre nosotros' | translate}}
                 </ion-item>
                 <ion-item nav-clear menu-close class="item-icon-right" ng-repeat="page in staticPages" href="#/app/static-page/{{page.id}}">
                     {{page.title}}
                     <i class="icon ion-arrow-right-c"></i>
                 </ion-item>
-                
-                <ion-item class="item-divider">
-                    {{'Siguenos en' | translate}}:
-                </ion-item>
-                <ion-item nav-clear menu-close class="item-icon-right" ng-repeat="social in socialNetworks" ng-click="href(social.url, '_system')">
-                    {{social.title}}
-                    <i class="icon {{social.icon}}"></i>
-                </ion-item>
-                
+
             </ion-list>
         </ion-content>
     </ion-side-menu>
-    
+
     <ion-side-menu side="right">
         <header class="bar bar-header bar-calm">
             <h1 class="title menu-title">
@@ -50,7 +45,7 @@
                             <span class="input-label">{{'Nombre de la receta' | translate}}</span>
                             <input type="text" placeholder="{{'Nombre de la receta' | translate}}" ng-model="formData.recipe" />
                         </label>
-        
+
                         <label class="item item-input item-select">
                             <div class="input-label">
                                 {{'Categoria' | translate}}:
@@ -59,7 +54,7 @@
                                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
                             </select>
                         </label>
-        
+
                         <label class="item item-input item-select">
                             <div class="input-label">
                                 {{'Etiqueta' | translate}}:
@@ -69,15 +64,15 @@
                             </select>
                         </label>
                     </div>
-                    
+
                     <div class="padding">
                         <button class="button button-block button-calm activated icon-left ion-ios-search-strong">{{'Buscar' | translate}}</button>
                     </div>
-                    
+
                 </form>
-                
+
             </ion-list>
         </ion-content>
     </ion-side-menu>
-    
+
 </ion-side-menus>

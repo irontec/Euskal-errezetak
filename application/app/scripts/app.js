@@ -61,7 +61,7 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
               }
             }
           })
-          
+
           .state('app.search', {
             url: '/search/:name/:tag/:category',
             views: {
@@ -74,16 +74,17 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
 
       // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/app/categories');
-        
-        
+
+
         $translateProvider.translations('es', {
             'Resultados': 'Resultados',
             'Nombre de la receta': 'Nombre de la receta',
             'Atras': 'Atras',
             'Ingredientes': 'Ingredientes',
+            'Pasos': 'Pasos',
             'Categorias': 'Categorias',
             'Categoria': 'Categoria',
-            'paginas': 'paginas',
+            'Sobre nosotros': 'Sobre nosotros',
             'Buscador': 'Buscador',
             'Etiqueta': 'Etiqueta',
             'Etiquetas': 'Etiquetas',
@@ -96,21 +97,22 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
             'Nombre de la receta': 'Errezetaren izena',
             'Atras': 'Atzera',
             'Ingredientes': 'Osagaiak',
+            'Pasos': 'Pausoak',
             'Categorias': 'Kategoriak',
             'Categoria': 'Kategoria',
-            'paginas': 'Atalak',
+            'Sobre nosotros': 'Guri buruz',
             'Buscador': 'Bilatzailea',
             'Etiqueta': 'Etiketa',
             'Etiquetas': 'Etiketak',
             'Buscar': 'Bilatu',
             'Siguenos en': 'Jarrai gaitzazu'
         });
-        
+
         $translateProvider.preferredLanguage('eu');
 
     })
     .run(function($ionicPlatform) {
-    
+
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.hide();
@@ -121,7 +123,7 @@ angular.module('EuskalErrezetak', ['ionic', 'config', 'EuskalErrezetak.controlle
             if(window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
-            
+
         });
     })
     .constant(

@@ -16,8 +16,9 @@ h1.menu-title {
 .category-header-portrait, .category-header-landscape {
     background-repeat: no-repeat;
     min-height: 200px;
+    text-align: right;
 
-    h1 {
+    span {
         margin: 5px 0 5px 0 !important;
         clear: both;
         float: right;
@@ -30,6 +31,28 @@ h1.menu-title {
         width: auto !important;
         font-size: 27px;
         text-align: right;
+        font: normal normal bold 28px/normal "Fjalla One", Helvetica, sans-serif;
+        color: rgba(255,255,255,1);
+
+        /*-webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        border: none;
+        font: normal normal bold 26px/normal "Fjalla One", Helvetica, sans-serif;
+        color: rgba(255,255,255,1);
+        -o-text-overflow: clip;
+        text-overflow: clip;
+        text-shadow: 1px 1px 0 #515151 , -1px -1px 0 #515151 , 1px -1px 0 #515151 , -1px 1px 0 #515151 ;
+        -webkit-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        -moz-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        -o-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+
+        background-color: rgba(54, 25, 25, 0.6);
+        padding: 4px 12px;
+        border-radius: 5px;
+
+        margin-top: 6px !important;*/
     }
 }
 
@@ -70,6 +93,7 @@ ion-item.recipes-list-item {
 
 a {
     text-decoration: none !important;
+    color: #515151 !important;
 }
 
 #backText {
@@ -146,9 +170,9 @@ a {
         font-size: 21px;
     }
 
-    .nav-bar h1 {
+    /*.nav-bar h1 {
         display: none;
-    }
+    }*/
 
     #backText {
         display: none;
@@ -165,6 +189,18 @@ a {
 }
 
 .content-recipe {
+
+    .row {
+        padding: 6px 12px;
+    }
+
+    ul {
+        margin-top: 12px;
+    }
+    li {
+        list-style: circle;
+        margin: 5px 2px 5px 12px;
+    }
 
     .recipe-info {
 
@@ -210,5 +246,210 @@ a {
     }
     .category-header-landscape {
         display: block;
+    }
+}
+
+.semaphore-wrapper {
+    background-color: #343434;
+}
+
+.semaphore {
+    padding: 0px 1px;
+    font-size: 24px;
+}
+
+.semaphore-red {
+    color: #AD3B0E;
+}
+
+.semaphore-yellow {
+    color: #EBAC1F;
+}
+
+.semaphore-green {
+    color: #8FB347;
+}
+
+.semaphore-gray {
+    color: #C2CBCE;
+}
+
+.recipe-title {
+    background-color: rgb(194, 203, 206);
+    color: rgb(68, 68, 68) !important;
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    word-wrap: break-word!important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.card-recipe {
+    padding: 0;
+}
+
+.title-image {
+    vertical-align: middle;
+    margin-bottom: 6px;
+    width: 100%;
+    max-height: 26px;
+    max-width: 183px;
+}
+.photo-col {
+    background-color: red;
+    min-width: 146px;
+}
+
+.info-col {
+    background-color: blue;
+}
+.info-row {
+    vertical-align: middle;
+}
+
+.row {
+    margin: 0px;
+    padding: 0px;
+}
+
+.cell-people-cost {
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    height: 32px;
+}
+.cell-people, .cell-cost, .cell-time {
+    height: 32px;
+    margin-top: 3px;
+}
+
+.cell-diff{
+    padding: 0px;
+    margin: 0px;
+}
+
+.cell-cost{
+    vertical-align: middle;
+}
+
+.main-menu {
+    height:100%;
+}
+
+.main-menu-element {
+    height:25%;
+    margin: 0px 0px 2px 0px;
+}
+
+.main-menu-portrait {
+    height:100%;
+
+    .category-name-caption {
+        margin-top:6px;
+    }
+
+    span {
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        border: none;
+        font: normal normal bold 30px/normal "Fjalla One", Helvetica, sans-serif;
+        color: rgba(255,255,255,1);
+        -o-text-overflow: clip;
+        text-overflow: clip;
+        text-shadow: 1px 1px 0 #515151 , -1px -1px 0 #515151 , 1px -1px 0 #515151 , -1px 1px 0 #515151 ;
+        -webkit-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        -moz-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        -o-transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+        transition: text-shadow 500ms cubic-bezier(0.42, 0, 0.58, 1);
+
+        background-color: rgba(54, 25, 25, 0.6);
+        padding: 4px 12px;
+        border-radius: 5px;
+    }
+
+}
+
+.scroll{
+  height:100% !important
+}
+
+@media (max-width: 650px) {
+    .responsive .col {
+        width: 100%;
+        margin-bottom:0px;
+    }
+    .responsive {
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 550px) {
+    .responsive-550 .col {
+        width: 100%;
+        margin-bottom:0px;
+    }
+    .responsive-550 {
+        -webkit-box-direction: normal;
+        -moz-box-direction: normal;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .recipe-info{
+        .col {
+            height:36px;
+            padding: 0px;
+        }
+    }
+}
+
+.bar-subheader {
+    background-color: rgba(51,51,51,0.6);
+
+    span {
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-style: italic;
+    }
+}
+
+
+.bar-subheader {
+    z-index: 1;
+    transition: top 0.25s ease;
+}
+
+.has-subheader {
+    top: 44px;
+    .scroll {
+        padding-top: 44px;
+    }
+}
+
+body.bar-subheader-slide-away {
+    .bar-subheader {
+        top: 0;
+    }
+    .has-subheader {
+        top: 44px;
+    }
+}
+
+.card-directions{
+    a {
+        color: rgb(67, 206, 230) !important;
     }
 }

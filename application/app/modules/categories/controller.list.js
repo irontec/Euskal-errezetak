@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlList', function($scope, $ionicLoading, $timeout, ErrorCall, baseUrl, CategoriesMapper) {
-    
+
     var categories = new CategoriesMapper();
     $scope.urlImg = baseUrl + '/image';
-    
+
     $ionicLoading.show({
-        template: 'Cargando... <i class="ion-loading-a"></i>'
+        template: 'Kargatzen... <i class="ion-loading-a"></i>'
     });
-    
+
     /**
      * Carga el listado de categorias
      */
@@ -17,7 +17,7 @@ angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlList', f
         $ionicLoading.hide();
     }).catch(function(errorCallback) {
         $ionicLoading.hide();
-        ErrorCall.Message('Hay problemas para cargar las categorias.');
+        ErrorCall.Message('Arazoak daude kategoriak kargatzeko.');
     });
-    
+
 });

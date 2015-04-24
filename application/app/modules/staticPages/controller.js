@@ -4,7 +4,7 @@ angular.module('EuskalErrezetak.controllers').controller('StaticPagesCtrl', func
 
     var staticPages = new StaticPagesMapper();
     $ionicLoading.show({
-        template: 'Cargando... <i class="ion-loading-a"></i>'
+        template: 'Kargatzen... <i class="ion-loading-a"></i>'
     });
 
     staticPages.$get({id: $stateParams.id}).then(function(data) {
@@ -12,7 +12,7 @@ angular.module('EuskalErrezetak.controllers').controller('StaticPagesCtrl', func
         $ionicLoading.hide();
     }).catch(function(errorCallback) {
         $ionicLoading.hide();
-        ErrorCall.Message('Hay problemas de carga.');
+        ErrorCall.Message('Konexio arazoak daude!');
     });
 
 });

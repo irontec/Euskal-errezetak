@@ -1,14 +1,19 @@
 'use strict';
 
-angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', function($scope, $stateParams, $ionicLoading, $timeout, baseUrl, CategoriesMapper, $ionicScrollDelegate, ErrorCall) {
-    
+angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', function($scope, $stateParams, $ionicLoading, $timeout, baseUrl, CategoriesMapper, $ionicScrollDelegate, ErrorCall, $ionicNavBarDelegate) {
+
     var categories = new CategoriesMapper();
     $scope.urlImg = baseUrl + '/image';
-    
+
     $ionicLoading.show({
-        template: 'Cargando... <i class="ion-loading-a"></i>'
+        template: 'Kargatzen... <i class="ion-loading-a"></i>'
     });
-    
+
+    $scope.isShowGoBack = $ionicNavBarDelegate.showBar();
+    $scope.myGoBack = function() {
+        $ionicNavBarDelegate.back();
+    };
+
     /**
      * Orden de recetas por nombre.
      */
@@ -20,7 +25,7 @@ angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', f
             $scope.isReverse = true;
         }
     };
-    
+
     /**
      * Mostrar buscador por nombre de recetas.
      */
@@ -32,7 +37,7 @@ angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', f
             $scope.isSearchRecipe = true;
         }
     }
-    
+
     /**
      * Cuando se busque por nombre ir al top
      */
@@ -49,7 +54,7 @@ angular.module('EuskalErrezetak.controllers').controller('CategoriesCtrlView', f
         $ionicLoading.hide();
     }).catch(function(errorCallback) {
         $ionicLoading.hide();
-        ErrorCall.Message('Hay problemas de carga.');
+        ErrorCall.Message('Arazoren bat gertatu da datuak kargatzean.');
     });
-    
+
 });
